@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Software Lessons from Distributed Systems | Zining&#39;s Space</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="This semester I worked in the first non-trivial-size software engineering course project, ECE419, where a team of three students wrote a distributed key-value storage service using Java. Reflecting on">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Software Lessons from Distributed Systems">
+<meta property="og:url" content="http://ziningzhu.me/2019/03/31/2019_03_distributed_systems/index.html">
+<meta property="og:site_name" content="Zining&#39;s Space">
+<meta property="og:description" content="This semester I worked in the first non-trivial-size software engineering course project, ECE419, where a team of three students wrote a distributed key-value storage service using Java. Reflecting on">
+<meta property="og:locale">
+<meta property="article:published_time" content="2019-03-31T13:08:00.000Z">
+<meta property="article:modified_time" content="2021-02-23T22:19:54.640Z">
+<meta property="article:author" content="Zining Zhu">
+<meta property="article:tag" content="teamwork">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;zhuzining">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-84222809-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  <meta name="google-site-verification" content="DI7qg6_y3mwWTdMA-GjrIY60uIS0beb12GxXZZ4A6gw" />
+
+  <link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
+
+  <script src="https://use.fontawesome.com/93f0a51ca6.js"></script>
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Zining&#39;s Space</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a id="nav-twitter-link" class="nav-icon" target="_blank" rel="noopener" href="https://twitter.com/zhuzining">
+        
+        
+          <a id="nav-linkedin-link" class="nav-icon" target="_blank" rel="noopener" href="https://www.linkedin.com/in/zining-zhu-49164496/">
+        
+        
+          <a id="nav-github-link" class="nav-icon" target="_blank" rel="noopener" href="http://github.com/ZiningZhu">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://ziningzhu.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-2019_03_distributed_systems" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/31/2019_03_distributed_systems/" class="article-date">
+  <time datetime="2019-03-31T13:08:00.000Z" itemprop="datePublished">2019-03-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Software/">Software</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Software Lessons from Distributed Systems
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>This semester I worked in the first non-trivial-size software engineering course project, ECE419, where a team of three students wrote a distributed key-value storage service using Java. Reflecting on the team work, there are several things I found important for software engineering teams:  </p>
+<ol>
+<li>Remember that we make mistakes.  </li>
+<li>Be open to different expectations.  </li>
+<li>Workload balancing remains an open question.<span id="more"></span>
+</li>
+</ol>
+<h2 id="1-Remember-that-we-make-mistakes"><a href="#1-Remember-that-we-make-mistakes" class="headerlink" title="1. Remember that we make mistakes"></a>1. Remember that we make mistakes</h2><p>We are not idealistic software engineers. In idealistic software engineering paradigms in textbooks (e.g., Effective Java), we learn from all sorts of good practices that, if followed well, could lead to good codes. Several examples of how “good” the codes will be could include reduced possibility to rewrite, or less time spent on debug in case there are unexpected teardowns. With that being said, as 4th year students, we are far from idealistic software engineers. To be honest, our code qualities would be roasted when scrutinized using the coding standards of major software companies. The imperfectness in our codes could result from (1) algorithms, (2) unfamiliar tools, and (3) designs. These three types of imperfectness are sorted in increasing difficulty of elimination.<br>The first type, <strong>algorithmic glitches</strong>, are errors that break the desired functionalities of software projects. We should take all possible approaches to eliminate them, by e.g., thorough coverage of unit tests. Another approach, frequent practice of LeetCode could help decrease algorithmic error in the first place.<br>The second type, <strong>unfamiliar tools</strong>, could also lead to the meltdown of the whole system, which should be eliminated as well. StackOverflow and official documentations are good helpers, and we should really make sure we know what every block of code performs before typing them into our IDEs. In addition, noting down the versions of third-party packages provide grounds for adaptation, in case their update changes some APIs (e.g., TensorFlow when they upgraded from 0.x to 1.0, and PyTorch from 0.4 to 1.0).<br>The third type, <strong>suboptimal designs</strong>, might not directly result in malfunctioning codes, but these poor design choices could lead to redundant and hard-to-maintain codes. Based on current level of software engineering experience, I can’t give definite criteria of which designs are poor. However, these following lines appear meaningful to me:</p>
+<ul>
+<li>We should not create much more states than necessary. Increased number of states crank up the difficulty of both coding and maintenance. For example, if we want to instantiate an object (in its constructor) carrying several fields, and dependent on user scenarios, some fields might be kept empty, it might be a good idea to iterate through the fields, instead of through possible use cases. Theoretically, for an object with $N$ fields, there could be $2^N$ use cases (each field is empty or not). Traversing the fields involve handling less states. By the way, relying on the default behaviors of <code>gson</code> (with some annotations) requires writing even less codes.  </li>
+<li>We should not let lower-level objects perform higher-level decisions. In Robotics, this is the principle behind the “subsumption architecture”. In a road robot example with subsumption architecture, lower-level modules (e.g., path tracking module, letting the robot to follow existing paths) handle their responsibilities, while higher-level modules (e.g., path planning module, deciding proper paths to go to) “subsumes” lower-level ones. More importantly, when the path tracking module is functioning, it controls how the wheels operate, and do not consider modifying the paths. This design methodology reduces the inter-dependencies between modules from a graph-like structure into a tree-like structure.<br>Note that team members might disagree on these design principles. It is therefore necessary to talk over some important decisions, before proceeding with writing the implementations.  </li>
+</ul>
+<p>All three types of mistakes are easier to occur when team members are in the passive “zones”. On one hand, time in the day heavily affects these “zones”. I remember a day when we stayed until 12am after grabbing some dinner. We spent 4 hours just to find out a stupid bug that should otherwise be discovered within half an hour in the morning. On the other hand, continuous working tend to pull people from the “active zone” into the “numb zone”. Another incidence I remember happened when two of us found a bug and was debugging when the third member was out having dinner. When he was back, his rapidness in thought when tacking the bug turned out to be much faster than us two (who probably had worked on this project almost non-stop for 8 hours).  </p>
+<h2 id="2-Be-open-to-different-expectations"><a href="#2-Be-open-to-different-expectations" class="headerlink" title="2. Be open to different expectations"></a>2. Be open to different expectations</h2><p>Nothing hurts more than the quit of an active team member. The remaining people have to modify the task allocations and, if necessary, fix the problems left by this gone person. However, quitting team projects happens a lot in university course projects. This is partly because the projects usually do not weigh as much as exams, and that completing them require significant time dedications.<br>To reduce the potential damages of these incidents, we should understand the expectations of every team member, even before the project starts. At least everyone should be aware of several things of other team members:  </p>
+<ul>
+<li>Amount of time expected to spend on this project. Is it at most several hours per week, or is the time dedication mostly distributed towards the deadline?  </li>
+<li>Expected quality of this project. Is “good enough is good enough”, or “things should be perfectly done”? If a project milestone is optional, is time going to be spent on it or not?   </li>
+<li>Expected distribution of workloads among people. Namely, who is in charge of which functionality.  </li>
+</ul>
+<p>A lot of these expectations could be impacted by the <strong>ownership mentality</strong>. In a previous company I worked at (TripAdvisor), people emphasized that “you own your codes”. The point of this emphasis is to give team members the feeling of ownership. The unspoken words behind “you own these codes” is, “you are leading projects on this block of code”. Considering that the team lead is usually the most motivated person, appointing someone to “lead” encourages their spontaneity to some extents. This strategy seems to work especially well for those people with high capability (hence higher expectations for themselves).  </p>
+<p>Another impact factor of these expectations is the <strong>team dynamics</strong>. Team members should feel comfortable working with each other. This requires us to try to avoid making other people feel disrespected. For many, this equals giving enough respect to their time and efforts, including giving compliments towards their good ideas or decisions. Here are several counter-examples:  </p>
+<ul>
+<li>“Your work is not good. Let me do it.” This is basically a bomb because it can very easily be interpreted as an <em>ad hominem</em> (i.e., towards the person) attack. In this case, you likely won’t be able to work together any more.  </li>
+<li>“Can you do this and that? <em>I just don’t want to</em>.” This could be problematic, dependent on the contexts. For example, if the speaker expects the listener to be able to carry over every residual tasks <em>easily</em>, while the listener expects both people to spend approximately equal amount of effort. Implicit mismatch of expectations could potentially lead to communication teardown.  </li>
+<li><p>“This course / project / <some person> is a piece of crap.” This type of sentences are not desirable, partly because this is criticism but not a constructive one. This type of sentences do not aim at solving problems or making the situation better — they aim at expressing feelings instead.  </p>
+<p>Careful wording should be used when communicating the expectations and creating team dynamics.</p>
+</li>
+</ul>
+<h2 id="3-How-to-balance-the-workload"><a href="#3-How-to-balance-the-workload" class="headerlink" title="3. How to balance the workload?"></a>3. How to balance the workload?</h2><p>This seems like an open question to me. In university course projects, balancing the workload might seem like an easy task: there has to be one person carrying the team. The person is going to basically write all codes. This type of “collaboration” is prohibited in ECE419, because the TAs ask arbitrary questions to every member. More detailed questions for workload balancing include:  </p>
+<ul>
+<li>How to properly divide tasks in the first place? Ideally the workload should be divided into chunks so that everyone is able to complete their chunk with comparable quality, at approximately the same time, and these chunks should not be mutually blocking. Probably this could be made possible if people have worked together for long enough, and the manager is experienced enough?  </li>
+<li>When people do not finish their current chunk at about the same time, how to dynamically adjust the residual workload?  </li>
+<li>Even if the ideal workload division was achieved, what if the design decision changed halfway? (shifting to an easier solution or going with plan B, etc.)  </li>
+</ul>
+<h2 id="4-What-makes-a-team-well-functioning"><a href="#4-What-makes-a-team-well-functioning" class="headerlink" title="4. What makes a team well-functioning?"></a>4. What makes a team well-functioning?</h2><p>A good team enables people (with varying frequencies to make mistakes, and distributed expectations) to happily work together to contribute to a centralized goal.    </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://ziningzhu.me/2019/03/31/2019_03_distributed_systems/" data-id="ckljodjx5002a3k1y73xpb3c2" class="article-share-link">Share</a>
+      
+        <a href="http://ziningzhu.me/2019/03/31/2019_03_distributed_systems/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/teamwork/" rel="tag">teamwork</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/04/15/2019_04_undergraduate_thesis/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Compositional Alignment of Word Embeddings
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/12/31/2018_12_books/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">4+4 Books I loved in 2018</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+    <aside id="sidebar" class="outer">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/12/22/2020_12_books/">&bull; Cool Books in 2020</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/30/2020_09_RSTprobe/">&bull; Examining the rhetorical capacities of neural language models</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/21/2020_09_infoprobe/">&bull; An information theoretic view on selecting linguistic probes</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/10/2020_07_acl2020/">&bull; Trends in ACL 2020</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/12/2020_04_bayes_recap/">&bull; Tested Positive. Do I Have It?</a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/26/2020_02_pytorch_questions/">&bull; Pytorch Questions</a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/12/2020_02_AAAI/">&bull; AAAI2020</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/24/2020_01_deconfounding_age/">&bull; Deconfounding Age Impacts</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/31/2019_12_books/">&bull; Books I loved in 2019</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/09/2019_12_bash/">&bull; Familiarizing with Bash</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/15/2019_08_Kant/">&bull; When Pearl Meets Kant</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/09/2019_06_NAACL2019/">&bull; NAACL2019</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/15/2019_04_undergraduate_thesis/">&bull; Compositional Alignment of Word Embeddings</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/31/2019_03_distributed_systems/">&bull; Software Lessons from Distributed Systems</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/31/2018_12_books/">&bull; 4+4 Books I loved in 2018</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ExplainableAI/" style="font-size: 12.5px;">ExplainableAI</a> <a href="/tags/GAN/" style="font-size: 10px;">GAN</a> <a href="/tags/NLP/" style="font-size: 20px;">NLP</a> <a href="/tags/PGM/" style="font-size: 10px;">PGM</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/VAE/" style="font-size: 10px;">VAE</a> <a href="/tags/algorithms/" style="font-size: 12.5px;">algorithms</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/bash/" style="font-size: 10px;">bash</a> <a href="/tags/book-review/" style="font-size: 17.5px;">book-review</a> <a href="/tags/conferences/" style="font-size: 15px;">conferences</a> <a href="/tags/database/" style="font-size: 10px;">database</a> <a href="/tags/drone/" style="font-size: 10px;">drone</a> <a href="/tags/java/" style="font-size: 12.5px;">java</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/learning/" style="font-size: 12.5px;">learning</a> <a href="/tags/linguistics/" style="font-size: 10px;">linguistics</a> <a href="/tags/ml-basics/" style="font-size: 20px;">ml-basics</a> <a href="/tags/os/" style="font-size: 10px;">os</a> <a href="/tags/philosophy/" style="font-size: 15px;">philosophy</a> <a href="/tags/pytorch/" style="font-size: 12.5px;">pytorch</a> <a href="/tags/robotics/" style="font-size: 10px;">robotics</a> <a href="/tags/teamwork/" style="font-size: 10px;">teamwork</a> <a href="/tags/web/" style="font-size: 15px;">web</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Academia/">Academia</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Literature/">Literature</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning/">Machine Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Philosophy/">Philosophy</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Software/">Software</a></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 Zining Zhu
+      <br>
+      Powered by <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a> with <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo-theme-landscape">Landscape</a>.
+    </div>
+  </div>
+
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'ziningzhu-me';
+  
+  var disqus_url = 'http://ziningzhu.me/2019/03/31/2019_03_distributed_systems/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" id=""></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

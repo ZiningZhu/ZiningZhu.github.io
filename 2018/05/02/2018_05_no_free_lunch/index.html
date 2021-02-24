@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Thoughts about the Free Lunch | Zining&#39;s Space</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="This post starts when I was reviewing the no free lunch theorem in machine learning. A machine learning model being able to predict with high accuracy from unseen data should have knowledge about the">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Thoughts about the Free Lunch">
+<meta property="og:url" content="http://ziningzhu.me/2018/05/02/2018_05_no_free_lunch/index.html">
+<meta property="og:site_name" content="Zining&#39;s Space">
+<meta property="og:description" content="This post starts when I was reviewing the no free lunch theorem in machine learning. A machine learning model being able to predict with high accuracy from unseen data should have knowledge about the">
+<meta property="og:locale">
+<meta property="article:published_time" content="2018-05-02T04:34:00.000Z">
+<meta property="article:modified_time" content="2021-02-23T22:19:54.640Z">
+<meta property="article:author" content="Zining Zhu">
+<meta property="article:tag" content="philosophy">
+<meta property="article:tag" content="learning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;zhuzining">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-84222809-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  <meta name="google-site-verification" content="DI7qg6_y3mwWTdMA-GjrIY60uIS0beb12GxXZZ4A6gw" />
+
+  <link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
+
+  <script src="https://use.fontawesome.com/93f0a51ca6.js"></script>
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Zining&#39;s Space</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a id="nav-twitter-link" class="nav-icon" target="_blank" rel="noopener" href="https://twitter.com/zhuzining">
+        
+        
+          <a id="nav-linkedin-link" class="nav-icon" target="_blank" rel="noopener" href="https://www.linkedin.com/in/zining-zhu-49164496/">
+        
+        
+          <a id="nav-github-link" class="nav-icon" target="_blank" rel="noopener" href="http://github.com/ZiningZhu">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://ziningzhu.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-2018_05_no_free_lunch" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/02/2018_05_no_free_lunch/" class="article-date">
+  <time datetime="2018-05-02T04:34:00.000Z" itemprop="datePublished">2018-05-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Machine-Learning/">Machine Learning</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Thoughts about the Free Lunch
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>This post starts when I was reviewing the no free lunch theorem in machine learning. A machine learning model being able to predict with high accuracy from unseen data should have knowledge about the data. Then what is knowledge? I started to have the feeling that knowledge should be defined in a broader sense than what it is done in (intro) epistemology textbooks. Namely, it should be closely related to the creation of intelligent systems, which might be more important than defining what knowledge is in human languages.</p>
+<ul>
+<li>A brief overview about the no free lunch theorem  </li>
+<li>Does learning something indicate having knowledge over it?  </li>
+<li>Gödel’s idea…?</li>
+<li>What should we do then? (If knowledge is nothing, then what does the hard tasks at schools make sense?)</li>
+</ul>
+<span id="more"></span>
+<h2 id="No-Free-Lunch-Theorem-a-machine-learning-point-of-view"><a href="#No-Free-Lunch-Theorem-a-machine-learning-point-of-view" class="headerlink" title="No Free Lunch Theorem: a machine learning point of view"></a>No Free Lunch Theorem: a machine learning point of view</h2><p>If you don’t impose any restrictions on the training data, then averaged among all possible training data, the performance of all learned models are equal.<br>Intuitively this makes sense — if you have a model well fitted to a dataset <script type="math/tex">\{ x_i, y_i \}</script>, then an arbitrarily created test set <script type="math/tex">\{ x_i, 1-y_i \}</script> will make this model have 0 accuracy. However this is by no means rigorous. A more rigorous formulation<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> states that for every learner, there exists a task on which it fails, even though that task can be successfully learned by another learner.<br>Takeaways from this theorem?  </p>
+<ul>
+<li>Any learning algorithm is context-dependent. A model trained on a dataset can <strong>not</strong> be ported to test on another dataset without some guarantee (e.g: the two datasets come from the same source, etc.) However, if the algorithm has good generalizability to the other dataset, then something common between these two datasets are really learned by this model.  </li>
+<li>Do not be too frustrated if a model does not work well on a dataset. It might be working well on another. On the other hand, it is very important to figure out on which datasets do your model performs well.  </li>
+</ul>
+<h2 id="Epistemology-point-of-view"><a href="#Epistemology-point-of-view" class="headerlink" title="Epistemology point of view"></a>Epistemology point of view</h2><p>This sections notes down some attempts to describe knowledge from a nature language point of view. A lot of information come from the PHL232 recommended reading <sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>. As far as I can tell, people try to give a definition of knowledge using human languages.<br>A classical analysis of knowledge defines it as justified true belief. Later people hold either belief-first (internalism) or knowledge-first (externalism) point of views. There are also some arguments saying “you have to believe a true information in the right way”. Either way, knowledge is closely related to the human’s subjective perceptual systems.<br>I don’t have an exact definition for knowledge, but feel that the definition should consider non-human objects and creatures as well. If a robot, for example, can clean the room, then it knows how to clean the room. This could also be a form of “knowledge”. More specifically, the ability to create intelligent systems should be able to indicate the mastery of (at least some of) the definition of knowledge. In this way, machine learning researchers are actually tackling one of the most interesting problems I have ever encountered: addressing what knowledge is, using pragmatic and generative approaches.</p>
+<h2 id="Godel’s-idea…"><a href="#Godel’s-idea…" class="headerlink" title="Gödel’s idea…?"></a>Gödel’s idea…?</h2><p>A further thought about why pragmatic and generative approach (instead of the literal approach taken in philosophers) works might be related to Gödel’s idea. More specifically, my bold extension to it.<br>Gödel’s incompleteness theorems proposed that no formal system of axioms are able to demonstrate its own consistency. (A tricky part comes in here: this theorem is not provable, and it actually asserts non-provability, so it is actually true. It is like saying “S1: this sentence is false. S2: you can’t prove, true or false, S1.” S2 evaluates to true.) In other words, there will be some axioms of a system that needs external knowledge to prove (true or false).<br>My bold extension: there are some statements in a knowledge system that is not able to be proved by the knowledge inside it. This might or might not be addressed, as more knowledge are discovered. The definition of knowledge using human language, in my opinion, belongs to one of the things that could not even be well defined using purely literal information: recursively asking “what is” is always (I think) possible — so that there is no point just going down levels by levels to clarify what knowledge is (for me: see below section for my definition of “no point”). As long as we can build intelligent systems, the definition of knowledge using human language is just meaningless (given that human languages, or formal logic systems, are limited in capacity). We might need to resort to the prowess of something we could not understand (<strong>but are able to control</strong>), to address “what knowledge is” in a pragmatic approach.</p>
+<h2 id="Pragmatic-opinions"><a href="#Pragmatic-opinions" class="headerlink" title="Pragmatic opinions"></a>Pragmatic opinions</h2><p>This ultimately comes back to talking about a problem that cannot even be clearly defined. In the above “reasoning”, I could only describe but not define the terms. I think it does not matter whether there is an ultimately discoverable truth (“matter” itself needs to be defined, by the way). What matters, however, is how you respond to that. Realizing your values, while making the world a better place could be a good metric to evaluate whether something matters. If holding a nihilistic point of view makes you go further away from making the world better, it is not good.</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style:none; padding-left: 0;"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">1.</span><span style="display: inline-block; vertical-align: top;">Understanding Machine Learning (Shai Shalev-Shwartz and Shai Ben-David)</span><a href="#fnref:1" rev="footnote"> ↩</a></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">2.</span><span style="display: inline-block; vertical-align: top;">Knowledge: a very short introduction (Jennifer Nagel)</span><a href="#fnref:2" rev="footnote"> ↩</a></li></ol></div></div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://ziningzhu.me/2018/05/02/2018_05_no_free_lunch/" data-id="ckljodjx3001q3k1yfcbe6cp7" class="article-share-link">Share</a>
+      
+        <a href="http://ziningzhu.me/2018/05/02/2018_05_no_free_lunch/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/philosophy/" rel="tag">philosophy</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/05/21/2018_05_style_ten_lessons/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Clarity And Grace in Writing
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/03/24/2018_03_svm/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Support Vector Machines Review</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+    <aside id="sidebar" class="outer">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/12/22/2020_12_books/">&bull; Cool Books in 2020</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/30/2020_09_RSTprobe/">&bull; Examining the rhetorical capacities of neural language models</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/21/2020_09_infoprobe/">&bull; An information theoretic view on selecting linguistic probes</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/10/2020_07_acl2020/">&bull; Trends in ACL 2020</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/12/2020_04_bayes_recap/">&bull; Tested Positive. Do I Have It?</a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/26/2020_02_pytorch_questions/">&bull; Pytorch Questions</a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/12/2020_02_AAAI/">&bull; AAAI2020</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/24/2020_01_deconfounding_age/">&bull; Deconfounding Age Impacts</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/31/2019_12_books/">&bull; Books I loved in 2019</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/09/2019_12_bash/">&bull; Familiarizing with Bash</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/15/2019_08_Kant/">&bull; When Pearl Meets Kant</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/09/2019_06_NAACL2019/">&bull; NAACL2019</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/15/2019_04_undergraduate_thesis/">&bull; Compositional Alignment of Word Embeddings</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/31/2019_03_distributed_systems/">&bull; Software Lessons from Distributed Systems</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/31/2018_12_books/">&bull; 4+4 Books I loved in 2018</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ExplainableAI/" style="font-size: 12.5px;">ExplainableAI</a> <a href="/tags/GAN/" style="font-size: 10px;">GAN</a> <a href="/tags/NLP/" style="font-size: 20px;">NLP</a> <a href="/tags/PGM/" style="font-size: 10px;">PGM</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/VAE/" style="font-size: 10px;">VAE</a> <a href="/tags/algorithms/" style="font-size: 12.5px;">algorithms</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/bash/" style="font-size: 10px;">bash</a> <a href="/tags/book-review/" style="font-size: 17.5px;">book-review</a> <a href="/tags/conferences/" style="font-size: 15px;">conferences</a> <a href="/tags/database/" style="font-size: 10px;">database</a> <a href="/tags/drone/" style="font-size: 10px;">drone</a> <a href="/tags/java/" style="font-size: 12.5px;">java</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/learning/" style="font-size: 12.5px;">learning</a> <a href="/tags/linguistics/" style="font-size: 10px;">linguistics</a> <a href="/tags/ml-basics/" style="font-size: 20px;">ml-basics</a> <a href="/tags/os/" style="font-size: 10px;">os</a> <a href="/tags/philosophy/" style="font-size: 15px;">philosophy</a> <a href="/tags/pytorch/" style="font-size: 12.5px;">pytorch</a> <a href="/tags/robotics/" style="font-size: 10px;">robotics</a> <a href="/tags/teamwork/" style="font-size: 10px;">teamwork</a> <a href="/tags/web/" style="font-size: 15px;">web</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Academia/">Academia</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Literature/">Literature</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning/">Machine Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Philosophy/">Philosophy</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Software/">Software</a></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 Zining Zhu
+      <br>
+      Powered by <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a> with <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo-theme-landscape">Landscape</a>.
+    </div>
+  </div>
+
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'ziningzhu-me';
+  
+  var disqus_url = 'http://ziningzhu.me/2018/05/02/2018_05_no_free_lunch/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" id=""></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

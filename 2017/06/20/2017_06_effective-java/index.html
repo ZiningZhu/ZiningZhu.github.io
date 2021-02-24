@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Effective Java | Zining&#39;s Space</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="This blog contains notes on Joshua Bloch’s Effective Java. I may also include some Java 8 specific entries after that. There are following parts:    Creating and Destroying Objects   Methods Common to">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Effective Java">
+<meta property="og:url" content="http://ziningzhu.me/2017/06/20/2017_06_effective-java/index.html">
+<meta property="og:site_name" content="Zining&#39;s Space">
+<meta property="og:description" content="This blog contains notes on Joshua Bloch’s Effective Java. I may also include some Java 8 specific entries after that. There are following parts:    Creating and Destroying Objects   Methods Common to">
+<meta property="og:locale">
+<meta property="article:published_time" content="2017-06-20T16:34:00.000Z">
+<meta property="article:modified_time" content="2021-02-23T22:19:54.639Z">
+<meta property="article:author" content="Zining Zhu">
+<meta property="article:tag" content="java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;zhuzining">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-84222809-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  <meta name="google-site-verification" content="DI7qg6_y3mwWTdMA-GjrIY60uIS0beb12GxXZZ4A6gw" />
+
+  <link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
+
+  <script src="https://use.fontawesome.com/93f0a51ca6.js"></script>
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Zining&#39;s Space</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a id="nav-twitter-link" class="nav-icon" target="_blank" rel="noopener" href="https://twitter.com/zhuzining">
+        
+        
+          <a id="nav-linkedin-link" class="nav-icon" target="_blank" rel="noopener" href="https://www.linkedin.com/in/zining-zhu-49164496/">
+        
+        
+          <a id="nav-github-link" class="nav-icon" target="_blank" rel="noopener" href="http://github.com/ZiningZhu">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://ziningzhu.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-2017_06_effective-java" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/20/2017_06_effective-java/" class="article-date">
+  <time datetime="2017-06-20T16:34:00.000Z" itemprop="datePublished">2017-06-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Effective Java
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>This blog contains notes on Joshua Bloch’s <a target="_blank" rel="noopener" href="https://www.amazon.com/Effective-Java-2nd-Joshua-Bloch/dp/0321356683/ref=sr_1_1?ie=UTF8&amp;qid=1498570378&amp;sr=8-1&amp;keywords=effective+java">Effective Java</a>. I may also include some Java 8 specific entries after that. There are following parts:  </p>
+<ul>
+<li>Creating and Destroying Objects  </li>
+<li>Methods Common to All Objects  </li>
+<li>Classes and Interfaces  </li>
+<li>Generics  </li>
+<li>Enums and Annotations  </li>
+<li>Methods</li>
+<li>General Programming</li>
+<li>Exceptions  </li>
+<li>Concurrency  </li>
+<li>Serialization<span id="more"></span>
+</li>
+</ul>
+<h2 id="Creating-and-Destroying-Objects"><a href="#Creating-and-Destroying-Objects" class="headerlink" title="Creating and Destroying Objects"></a>Creating and Destroying Objects</h2><h3 id="Item-1-Static-Factory-Methods-instead-of-Constructors"><a href="#Item-1-Static-Factory-Methods-instead-of-Constructors" class="headerlink" title="Item 1: Static Factory Methods instead of Constructors"></a>Item 1: Static Factory Methods instead of Constructors</h3><p>Advantages of static factory methods include:</p>
+<ul>
+<li>Unlike constructors, they have names.</li>
+<li>They are not required to create a new object each time they are invoked.</li>
+<li>They can return an object of any subtype of their return type.</li>
+<li>They reduce the verbosity of creating parameterized type instances.<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, Integer&gt; m = HashMap.newInstance();</span><br></pre></td></tr></table></figure>
+Disadvantages include:</li>
+<li>Classes without public or protected constructors cannot be subclassed</li>
+<li>They are not readily distinguishable from other static methods</li>
+</ul>
+<h3 id="Item-2-Consider-a-Builder-when-faced-with-many-constructor-parameters"><a href="#Item-2-Consider-a-Builder-when-faced-with-many-constructor-parameters" class="headerlink" title="Item 2: Consider a Builder when faced with many constructor parameters"></a>Item 2: Consider a Builder when faced with many constructor parameters</h3><p>There are several alternatives:<br>(1) Telescoping constructor. This method rerquires redundant codes.<br>(2) JavaBeans pattern: use tons of setters. Their thread safety should be taken care of from programmers’ side.<br>(3) Builder pattern: can enforce checkings in <code>build()</code>.</p>
+<h3 id="Item-3-Enforce-singleton-property-with-a-private-constructor-or-an-enum-type"><a href="#Item-3-Enforce-singleton-property-with-a-private-constructor-or-an-enum-type" class="headerlink" title="Item 3: Enforce singleton property with a private constructor or an enum type"></a>Item 3: Enforce singleton property with a private constructor or an enum type</h3><p>Several ways to enforce singleton property exists.</p>
+<ul>
+<li>An obvious approach is <code>public static final</code> field instance.  </li>
+<li>The commonly mentioned one is “private static instance + private constructor + public <code>getInstance()</code> method”.  </li>
+<li>Enum singleton: a single-element enum type.</li>
+</ul>
+<h3 id="Item-4-Enforce-non-instantiability-with-a-private-constructor"><a href="#Item-4-Enforce-non-instantiability-with-a-private-constructor" class="headerlink" title="Item 4: Enforce non-instantiability with a private constructor"></a>Item 4: Enforce non-instantiability with a private constructor</h3><p>Otherwise the compiler might give the class a default <em>public</em> constructor.</p>
+<h3 id="Item-5-Avoid-creating-unnecessary-objects"><a href="#Item-5-Avoid-creating-unnecessary-objects" class="headerlink" title="Item 5: Avoid creating unnecessary objects"></a>Item 5: Avoid creating unnecessary objects</h3><ul>
+<li>An <em>immutable</em> object can always be reused, like string literals.  </li>
+<li>Avoid creating boxing typed variables if primitive typed ones are available.</li>
+</ul>
+<h3 id="Item-6-Eliminate-obsolete-object-references"><a href="#Item-6-Eliminate-obsolete-object-references" class="headerlink" title="Item 6: Eliminate obsolete object references"></a>Item 6: Eliminate obsolete object references</h3><p>Manually set obsolete pointers to null, so that GC can collect the spaces. Otherwise there may be memory leak.</p>
+<h3 id="Item-7-Avoid-finalizers"><a href="#Item-7-Avoid-finalizers" class="headerlink" title="Item 7: Avoid finalizers"></a>Item 7: Avoid finalizers</h3><ul>
+<li>Finalizers are not guaranteed to run soon, so never do anything time-critical in finalizers.</li>
+<li>If we want an explicit termination method, use it with <code>try-finally</code> construct, where the <code>finally</code> block is guaranteed to execute in a timely manner.  </li>
+</ul>
+<h2 id="Methods-Common-to-All-Objects"><a href="#Methods-Common-to-All-Objects" class="headerlink" title="Methods Common to All Objects"></a>Methods Common to All Objects</h2><h3 id="Item-8-Obey-the-general-contract-when-overriding-equals"><a href="#Item-8-Obey-the-general-contract-when-overriding-equals" class="headerlink" title="Item 8: Obey the general contract when overriding equals"></a>Item 8: Obey the general contract when overriding <code>equals</code></h3><p>There are five requirements in the general contract:</p>
+<ul>
+<li>Reflexivity: anything.equals(itself)  </li>
+<li>Symmetry: if a.equals(b) then b.equals(a))<br>An important point is the case of “is-a”. <strong>There is no way to extend an instantiable class and add a value component while preserving the equals contract</strong> (unless OOP abtraction is broken)  </li>
+<li>Transitivity: If a==b and b==c, then a==c</li>
+<li>Consistency: If a==b, then a==b always true (unless a or b are modified)</li>
+<li>Non-nullity: null != anything  </li>
+</ul>
+<h3 id="Item-9-Always-override-hashCode-when-you-override-equals"><a href="#Item-9-Always-override-hashCode-when-you-override-equals" class="headerlink" title="Item 9: Always override hashCode when you override equals"></a>Item 9: Always override hashCode when you override equals</h3><p>A <code>hashCode()</code> method should ensure that equal objects receive equal hash codes, while avoid hash collisions.</p>
+<h3 id="Item-10-Always-override-toString"><a href="#Item-10-Always-override-toString" class="headerlink" title="Item 10: Always override toString"></a>Item 10: Always override toString</h3><p>And make the contents humanly readible.</p>
+<h3 id="Item-11-Override-clone-judiciously"><a href="#Item-11-Override-clone-judiciously" class="headerlink" title="Item 11: Override clone judiciously"></a>Item 11: Override <code>clone</code> judiciously</h3><ul>
+<li>If you override <code>clone</code> in a nonfinal class, you should return an object obtained by invoking <code>super.clone()</code>.</li>
+<li>Never make the client do anything the library can do for the client.</li>
+<li>In effect, the <code>clone</code> method functions as another constructor.</li>
+<li>Consider using a copy constructor instead.</li>
+</ul>
+<h3 id="Item-12-Consider-implementing-Comparable"><a href="#Item-12-Consider-implementing-Comparable" class="headerlink" title="Item 12: Consider implementing Comparable"></a>Item 12: Consider implementing <code>Comparable</code></h3><ul>
+<li>Throw <code>ClassCastException</code> if two object references being compared to refer to objects of different classes.</li>
+</ul>
+<h2 id="Classes-and-Interfaces"><a href="#Classes-and-Interfaces" class="headerlink" title="Classes and Interfaces"></a>Classes and Interfaces</h2><h3 id="Item-13-Minimize-accessibility-of-classes-and-members"><a href="#Item-13-Minimize-accessibility-of-classes-and-members" class="headerlink" title="Item 13: Minimize accessibility of classes and members"></a>Item 13: Minimize accessibility of classes and members</h3><ul>
+<li>For top-level classes and interfaces, only package-private or public are possible.  </li>
+<li>For members (fields, methods, nested classes, nested interfaces) there are four levels of accessibility: private, package-private (default; no modifier), protected, and public.  </li>
+<li>Instance fields should never be pubic. Otherwise it is at least not thread-safe. Use accessor methods (getter, setter) instead. (Item 14)</li>
+</ul>
+<h3 id="Item-14-In-public-classes-use-accessor-methods-not-public-fields"><a href="#Item-14-In-public-classes-use-accessor-methods-not-public-fields" class="headerlink" title="Item 14: In public classes, use accessor methods, not public fields"></a>Item 14: In public classes, use accessor methods, not public fields</h3><h3 id="Item-15-Minimize-mutability"><a href="#Item-15-Minimize-mutability" class="headerlink" title="Item 15: Minimize mutability"></a>Item 15: Minimize mutability</h3><p>To make a class immutable, follow these following five rules:  </p>
+<ol>
+<li>Don’t provide mutators (methods modifying the class’s state)  </li>
+<li>Ensure the class cannot be extended.  <ul>
+<li>Either making this class final, or  </li>
+<li>Making all its constructors private or package-private.  </li>
+</ul>
+</li>
+<li>Make all fields final.  </li>
+<li>Make all fields private.  </li>
+<li>Ensure exclusive access to any mutable components.  </li>
+</ol>
+<h3 id="Item-16-Favor-composition-over-inheritance"><a href="#Item-16-Favor-composition-over-inheritance" class="headerlink" title="Item 16: Favor composition over inheritance"></a>Item 16: Favor composition over inheritance</h3><p>TODO</p>
+<h3 id="Item-17-Design-and-document-for-inheritance-or-else-prohibit-it"><a href="#Item-17-Design-and-document-for-inheritance-or-else-prohibit-it" class="headerlink" title="Item 17: Design and document for inheritance, or else prohibit it"></a>Item 17: Design and document for inheritance, or else prohibit it</h3><h3 id="Item-18-Prefer-interfaces-to-abstract-classes"><a href="#Item-18-Prefer-interfaces-to-abstract-classes" class="headerlink" title="Item 18: Prefer interfaces to abstract classes"></a>Item 18: Prefer interfaces to abstract classes</h3><h3 id="Itme-19-Use-interfaces-only-to-represent-types"><a href="#Itme-19-Use-interfaces-only-to-represent-types" class="headerlink" title="Itme 19: Use interfaces only to represent types"></a>Itme 19: Use interfaces only to represent types</h3><p>Because each class can implement so many interfaces, there will be tons of classes to change, if you want to modify an interface.  </p>
+<h3 id="Item-20-Prefer-class-hierarchies-to-tagged-classes"><a href="#Item-20-Prefer-class-hierarchies-to-tagged-classes" class="headerlink" title="Item 20: Prefer class hierarchies to tagged classes"></a>Item 20: Prefer class hierarchies to tagged classes</h3><h3 id="Item-21-Use-function-objects-to-represent-strategies"><a href="#Item-21-Use-function-objects-to-represent-strategies" class="headerlink" title="Item 21: Use function objects to represent strategies"></a>Item 21: Use function objects to represent strategies</h3><h3 id="Item-22-Favor-static-member-classes-over-nonstatic"><a href="#Item-22-Favor-static-member-classes-over-nonstatic" class="headerlink" title="Item 22: Favor static member classes over nonstatic"></a>Item 22: Favor static member classes over nonstatic</h3><h2 id="Generics"><a href="#Generics" class="headerlink" title="Generics"></a>Generics</h2><p>A table for terms used in the Generics chapter:  </p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Parameterized type</td>
+<td><code>List&lt;String&gt;</code></td>
+</tr>
+<tr>
+<td>Actual type parameter</td>
+<td><code>String</code></td>
+</tr>
+<tr>
+<td>Generic type</td>
+<td><code>List&lt;E&gt;</code></td>
+</tr>
+<tr>
+<td>Formal type parameter</td>
+<td><code>E</code></td>
+</tr>
+<tr>
+<td>Unbounded wildcard type</td>
+<td><code>List&lt;?&gt;</code></td>
+</tr>
+<tr>
+<td>Raw type</td>
+<td><code>List</code></td>
+</tr>
+<tr>
+<td>Bounded type parameter</td>
+<td><code>&lt;E extends Number&gt;</code></td>
+</tr>
+<tr>
+<td>Recursive type bound</td>
+<td><code>&lt;T extends Comparable&lt;T&gt;&gt;</code></td>
+</tr>
+<tr>
+<td>Bounded wildcard type</td>
+<td><code>List&lt;? extends Number&gt;</code></td>
+</tr>
+<tr>
+<td>Generic method</td>
+<td><code>static &lt;E&gt; List&lt;E&gt; asList(E[] a)</code></td>
+</tr>
+<tr>
+<td>Type token</td>
+<td><code>String.class</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="Item-23-Don’t-use-raw-types-in-new-code"><a href="#Item-23-Don’t-use-raw-types-in-new-code" class="headerlink" title="Item 23: Don’t use raw types in new code"></a>Item 23: Don’t use raw types in new code</h3><p>In coding with legacy codes, the migration compatibility requirement drives the support of raw types.<br>However, there are two literals: (1) Must use raw types in class literals. (2) <code>instanceof</code> operator with generic type.  </p>
+<h3 id="Item-24-Eliminate-unchecked-warnings"><a href="#Item-24-Eliminate-unchecked-warnings" class="headerlink" title="Item 24: Eliminate unchecked warnings"></a>Item 24: Eliminate unchecked warnings</h3><p>If you are very sure, suppress the warning with <code>@SuppressWarnings(&quot;unchecked&quot;)</code>.</p>
+<h3 id="Item-25-Prefer-lists-to-arrays"><a href="#Item-25-Prefer-lists-to-arrays" class="headerlink" title="Item 25: Prefer lists to arrays"></a>Item 25: Prefer lists to arrays</h3><p>Arrays differ from generic types: (1) Arrays are <strong>covariant</strong>. If <code>Sub</code> is a subtype of <code>Super</code>, then <code>Sub[]</code> is a subtype of <code>Super[]</code>. Lists throw exceptions in compile time (<strong>invariant</strong>), which gives a better warning. (2) Arrays are <strong>reified</strong>. Arrays know and enforce their element types ar runtime. Lists enforce type constraints at compile time (<strong>erased</strong>).<br>Arrays and lists do not mix well. A generic array like <code>List&lt;E&gt;[]</code> does not compile.  </p>
+<h3 id="Item-26-Favor-generic-types"><a href="#Item-26-Favor-generic-types" class="headerlink" title="Item 26: Favor generic types"></a>Item 26: Favor generic types</h3><p>Instead of using a lot of conversions on <code>Object</code>.<br>Note that a generic typed array (a non-reifiable type) triggers an exception. Two alternatives to circumvent this problem: (1) Create an array of Objects and cast them: <code>elements = (E[]) new Object[SIZE]</code>. (2) Make it an array of Object, and cast them <em>when needed</em>. Both will turn the error into a warning; suppress it.  </p>
+<h3 id="Item-27-Favor-generic-methods"><a href="#Item-27-Favor-generic-methods" class="headerlink" title="Item 27: Favor generic methods"></a>Item 27: Favor generic methods</h3><p>The type parameter list, which declares the type parameter, goes between the method’s modifiers and its return type.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// raw types - unacceptable (item 23)  </span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Set <span class="title">union</span><span class="params">(...)</span> </span>&#123;&#125;</span><br><span class="line"><span class="comment">// Generic method - a simple example</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;E&gt; <span class="function">Set&lt;E&gt; <span class="title">union</span><span class="params">(...)</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure><br>One noteworthy feature of generic methods is that you needn’t specify the value of the type parameter explicitly (as you must when invoking generic constructors) — the compiler figures out. This is <strong>type inference</strong>.  </p>
+<ul>
+<li>The <strong>generic static factory</strong> pattern makes you only need to specify the class types once.  </li>
+<li>The generic singleton factory pattern enables you to create an object that is immutable but applicable to many different types.</li>
+</ul>
+<h3 id="Item-28-Use-bounded-wildcards-to-increase-API-flexibility"><a href="#Item-28-Use-bounded-wildcards-to-increase-API-flexibility" class="headerlink" title="Item 28: Use bounded wildcards to increase API flexibility"></a>Item 28: Use bounded wildcards to increase API flexibility</h3><p>Producer-extends, consumer-super.</p>
+<h3 id="Item-29-Consider-typesafe-heterogeneous-containers"><a href="#Item-29-Consider-typesafe-heterogeneous-containers" class="headerlink" title="Item 29: Consider typesafe heterogeneous containers"></a>Item 29: Consider typesafe heterogeneous containers</h3><h2 id="Enums-and-Annotations"><a href="#Enums-and-Annotations" class="headerlink" title="Enums and Annotations"></a>Enums and Annotations</h2><h3 id="Item-30-Use-Enums-instead-of-int-constants"><a href="#Item-30-Use-Enums-instead-of-int-constants" class="headerlink" title="Item 30: Use Enums instead of int constants"></a>Item 30: Use Enums instead of int constants</h3><p>Benefits of enum type:  </p>
+<ul>
+<li>Compile-time type-safe.  </li>
+<li>Each type has its name space.  </li>
+<li>Enables adding fields and methods (the fields have to be final).  </li>
+<li>Example of class <code>Operation</code> using enum: <code>Operation.java</code>.  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">Operation</span></span>&#123;</span><br><span class="line">    <span class="comment">// Instance fields are String symbol in this case</span></span><br><span class="line">    PLUS(<span class="string">&quot;+&quot;</span>) &#123; <span class="function"><span class="keyword">double</span> <span class="title">apply</span> <span class="params">(<span class="keyword">double</span> x, <span class="keyword">double</span> y)</span> </span>&#123; <span class="keyword">return</span> x + y; &#125; &#125;,</span><br><span class="line">    MINUS(<span class="string">&quot;-&quot;</span>) &#123; <span class="function"><span class="keyword">double</span> <span class="title">apply</span> <span class="params">(<span class="keyword">double</span> x, <span class="keyword">double</span> y)</span> </span>&#123; <span class="keyword">return</span> x - y; &#125; &#125;,</span><br><span class="line">    TIMES(<span class="string">&quot;*&quot;</span>) &#123; <span class="function"><span class="keyword">double</span> <span class="title">apply</span> <span class="params">(<span class="keyword">double</span> x, <span class="keyword">double</span> y)</span> </span>&#123; <span class="keyword">return</span> x * y; &#125; &#125;,</span><br><span class="line">    DIVIDE(<span class="string">&quot;/&quot;</span>) &#123; <span class="function"><span class="keyword">double</span> <span class="title">apply</span> <span class="params">(<span class="keyword">double</span> x, <span class="keyword">double</span> y)</span> </span>&#123; <span class="keyword">return</span> x / y; &#125; &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Add some methods below</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String symbol;</span><br><span class="line">    Operation(String symbol) &#123; <span class="keyword">this</span>.symbol = symbol; &#125;</span><br><span class="line">    <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> symbol; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">abstract</span> <span class="keyword">double</span> <span class="title">apply</span> <span class="params">(<span class="keyword">double</span> x, <span class="keyword">double</span> y)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">double</span> x = Double.parseDouble(args[<span class="number">0</span>]);</span><br><span class="line">        <span class="keyword">double</span> y = Double.parseDouble(args[<span class="number">1</span>]);</span><br><span class="line">        <span class="keyword">for</span> (Operation op : Operation.values())</span><br><span class="line">            System.out.printf(<span class="string">&quot;%f %s %f = %f%n&quot;</span>, x, op, y, op.apply(x, y));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Item-31-Use-instance-fields-instead-of-ordinals"><a href="#Item-31-Use-instance-fields-instead-of-ordinals" class="headerlink" title="Item 31: Use instance fields instead of ordinals"></a>Item 31: Use instance fields instead of ordinals</h3><p>All enums have an <code>ordinal()</code> method, but relying on it to derive a value is unreliable, since <code>ordinal()</code> value may change once you add items in the enum type.  </p>
+<h3 id="Item-32-Use-EnumSet-instead-of-bit-fields"><a href="#Item-32-Use-EnumSet-instead-of-bit-fields" class="headerlink" title="Item 32: Use EnumSet instead of bit fields"></a>Item 32: Use <code>EnumSet</code> instead of bit fields</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Bit field enumeration constants - Don&#x27;t use it!</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Text</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> STYLE_BOLD          = <span class="number">1</span> &lt;&lt; <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> STYLE_ITALIC        = <span class="number">1</span> &lt;&lt; <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> STYLE_UNDERLINE     = <span class="number">1</span> &lt;&lt; <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> STYLE_STRIKETHROUGH = <span class="number">1</span> &lt;&lt; <span class="number">3</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">applyStyles</span><span class="params">(<span class="keyword">int</span> styles)</span> </span>&#123;...&#125;</span><br><span class="line">&#125;</span><br><span class="line">text.applyStyles(STYLE_BOLD | STYLE_ITALIC);</span><br><span class="line"></span><br><span class="line"><span class="comment">// EnumSet defining and usage:</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Text</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">Style</span> </span>&#123;BOLD, ITALIC, UNDERLINE, STRIKETHROUGH&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">applyStyles</span><span class="params">(Set&lt;Style&gt; styles)</span> </span>&#123;...&#125;</span><br><span class="line">&#125;</span><br><span class="line">text.applyStyles(EnumSet.of(Style.BOLD, Style.ITALIC));</span><br></pre></td></tr></table></figure>
+<h3 id="Item-33-Use-EnumMap-instead-of-ordinal-indexing"><a href="#Item-33-Use-EnumMap-instead-of-ordinal-indexing" class="headerlink" title="Item 33: Use EnumMap instead of ordinal indexing"></a>Item 33: Use <code>EnumMap</code> instead of ordinal indexing</h3><p>An <code>EnumMap</code> is a <code>Map</code> with a few restrictions:  </p>
+<ul>
+<li>It is used for mapping from an enum type (to whatever)  </li>
+<li>It is instantiated with the enum type: <code>Type.class</code><br>There are some features:  </li>
+<li><code>EnumMap</code> provides an iterator, and performs faster than <code>HashMap</code>.  </li>
+<li>To iterate over an <code>EnumMap</code>, use something like <code>for (Type t : Type.values())</code>    </li>
+</ul>
+<h3 id="Item-34-Emulate-extensible-enums-with-interfces"><a href="#Item-34-Emulate-extensible-enums-with-interfces" class="headerlink" title="Item 34: Emulate extensible enums with interfces"></a>Item 34: Emulate extensible enums with interfces</h3><p>While you cannot write an extensible enum type, you can <strong>emulate</strong> it by writing an interface to go with a basic enum type that implements the interface.<br>This is widely used in operation codes. For example: the codes in item 30 can be changed to extensible.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public interface Operation &#123; double apply (double x, double y); &#125;</span><br><span class="line">public enum BasicOperation implements Operation &#123;</span><br><span class="line">    &#x2F;&#x2F; Remaining thing goes here</span><br><span class="line">&#125;</span><br><span class="line">public enum ExtendedOperation implements Operation &#123;</span><br><span class="line">    EXP(&quot;^&quot;) &#123; public double apply (double x, double y) &#123;return Math.pow(x,y); &#125; &#125;,</span><br><span class="line">    REMAINDER(&quot;%&quot;) &#123;public double apply (double x, double y) &#123;return x % y;&#125;&#125;;</span><br><span class="line">    private final String symbol;</span><br><span class="line">    ExtendedOperation(String symbol) &#123;this.symbol &#x3D; symbol;&#125;</span><br><span class="line">    @Override public String toString() &#123;return symbol;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="Item-35-Prefer-annotations-to-naming-patterns"><a href="#Item-35-Prefer-annotations-to-naming-patterns" class="headerlink" title="Item 35: Prefer annotations to naming patterns"></a>Item 35: Prefer annotations to naming patterns</h3><p>Instead of naming the jUnit tests according to nomenclatures, give it a <code>@Test</code> label.  </p>
+<h3 id="Item-36-Consistently-use-the-Override-notation"><a href="#Item-36-Consistently-use-the-Override-notation" class="headerlink" title="Item 36: Consistently use the Override notation"></a>Item 36: Consistently use the <code>Override</code> notation</h3><p>… on the methods you believe to override a superclass declaration — and then the compiler can point out if the signature is different.</p>
+<h3 id="Item-37-Use-marker-interfaces-to-define-types"><a href="#Item-37-Use-marker-interfaces-to-define-types" class="headerlink" title="Item 37: Use marker interfaces to define types"></a>Item 37: Use marker interfaces to define types</h3><p>A marker interface is an interface that contains no methods declarations. The difference between marker interfaces and marker annotations is that: marker interfaces are generally used to define classes and interfaces, whereas marker annotations can be used to programs.  </p>
+<h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><h3 id="Item-38-Check-parameters-for-validity"><a href="#Item-38-Check-parameters-for-validity" class="headerlink" title="Item 38: Check parameters for validity"></a>Item 38: Check parameters for validity</h3><p>Think about some restrictions on the parameters. If there are, write:  </p>
+<ul>
+<li>The <code>assert</code> commands.  </li>
+<li>Remember to write <code>@param</code>, <code>@return</code>, and <code>@throws</code> annotations in the Javadoc.  </li>
+</ul>
+<h3 id="Item-39-Make-defensive-copies-when-needed"><a href="#Item-39-Make-defensive-copies-when-needed" class="headerlink" title="Item 39: Make defensive copies when needed"></a>Item 39: Make defensive copies when needed</h3><ul>
+<li>In Java, everything is passed via reference.  </li>
+<li>In the constructor, make a defensive copy (DON’T use <code>clone</code>; use copy constructors instead), to prevent the class internal being modified.  </li>
+<li>The defensive copies shall be made <strong>prior to</strong> validity check. Otherwise there may be TOCTOU attack (modification between Time-Of-Check and Time-Of-Use).  </li>
+<li>Modify accessors to return defensive copies of mutable internal fields.  </li>
+<li>In summary, if a class has mutable components that it get from or returns to its clients, the class must defensively copy these components.  </li>
+</ul>
+<h3 id="Item-40-Design-method-signatures-carefully"><a href="#Item-40-Design-method-signatures-carefully" class="headerlink" title="Item 40: Design method signatures carefully"></a>Item 40: Design method signatures carefully</h3><ul>
+<li>Choose method names carefully.  </li>
+<li>Don’t go overboard in providing convenience methods.  </li>
+<li>Avoid long parameter lists.  </li>
+<li>For parameter types, favor interfaces over classes.  </li>
+<li>Prefer two-element enum types to boolean parameters.  </li>
+</ul>
+<h3 id="Item-41-Use-overloading-judiciously"><a href="#Item-41-Use-overloading-judiciously" class="headerlink" title="Item 41: Use overloading judiciously"></a>Item 41: Use overloading judiciously</h3><ul>
+<li>The choice of which overloading to invoke is made at <strong>compile time</strong>.  </li>
+<li>A safe, conservative policy is never to export two overloadings with the same number of parameters.  </li>
+</ul>
+<h3 id="Item-42-Use-varargs-judiciously"><a href="#Item-42-Use-varargs-judiciously" class="headerlink" title="Item 42: Use varargs judiciously"></a>Item 42: Use varargs judiciously</h3><ul>
+<li>Variable-arity methods have problem: the behavior of passing no arguments is undefined.  </li>
+<li>Don’t retrofit every method that has a final array parameter; use varargs only when a call really operates on a variable-length sequence of values.  </li>
+<li><code>Arrays.asList()</code> might even parse it to a single-item array, which is undesirable.</li>
+</ul>
+<h3 id="Item-43-Return-empty-arrays-or-collections-not-nulls"><a href="#Item-43-Return-empty-arrays-or-collections-not-nulls" class="headerlink" title="Item 43: Return empty arrays or collections, not nulls"></a>Item 43: Return empty arrays or collections, not nulls</h3><p>An empty array or collection has 0 <code>size</code>, and does not throw NPE.  </p>
+<h3 id="Item-44-Document-every-exposed-API"><a href="#Item-44-Document-every-exposed-API" class="headerlink" title="Item 44: Document every exposed API"></a>Item 44: Document every exposed API</h3><p>… which happen to be detested by many programmers LOL.</p>
+<h2 id="General-Programming"><a href="#General-Programming" class="headerlink" title="General Programming"></a>General Programming</h2><h3 id="Item-45-Minimize-the-scope-of-local-variables"><a href="#Item-45-Minimize-the-scope-of-local-variables" class="headerlink" title="Item 45: Minimize the scope of local variables"></a>Item 45: Minimize the scope of local variables</h3><p>Recommended: declare the variables at the first place it is used.  </p>
+<h3 id="Item-46-Prefer-for-each-loops-to-traditional-for-loops"><a href="#Item-46-Prefer-for-each-loops-to-traditional-for-loops" class="headerlink" title="Item 46: Prefer for-each loops to traditional for-loops"></a>Item 46: Prefer for-each loops to traditional for-loops</h3><p>Except when you want to modify the loop elements themselves. If you want to use the traditional for loop (using i, j, etc. as iteration pointers), be careful about how many times some objects are iterated — especially when you call something like <code>next()</code>.  </p>
+<h3 id="Item-47-Know-and-use-libraries"><a href="#Item-47-Know-and-use-libraries" class="headerlink" title="Item 47: Know and use libraries"></a>Item 47: Know and use libraries</h3><p>For example, <code>new Random() .nextInt()</code> is evenly distributed along <code>(0, Integer.MAX_VALUE]</code>  </p>
+<h3 id="Item-48-Avoid-float-and-double-if-exact-answers-are-required"><a href="#Item-48-Avoid-float-and-double-if-exact-answers-are-required" class="headerlink" title="Item 48: Avoid float and double if exact answers are required"></a>Item 48: Avoid <code>float</code> and <code>double</code> if exact answers are required</h3><p>Use <code>BigDecimal</code>, <code>int</code>, or <code>long</code> instead.  </p>
+<h3 id="Item-49-Prefer-primitive-types-to-boxed-primitives"><a href="#Item-49-Prefer-primitive-types-to-boxed-primitives" class="headerlink" title="Item 49: Prefer primitive types to boxed primitives"></a>Item 49: Prefer primitive types to boxed primitives</h3><p>Boxed primitives slows the calculation down by a large factor. Also, applying the <code>==</code> operator to boxed primitives is almost always wrong. Override and use <code>equals()</code> instead.  </p>
+<h3 id="Item-50-Avoid-strings-where-other-types-are-more-appropriate"><a href="#Item-50-Avoid-strings-where-other-types-are-more-appropriate" class="headerlink" title="Item 50: Avoid strings where other types are more appropriate"></a>Item 50: Avoid strings where other types are more appropriate</h3><p>So… avoid it whenever other types are applicable.  </p>
+<h3 id="Item-51-Beware-the-performance-of-string-concatenation"><a href="#Item-51-Beware-the-performance-of-string-concatenation" class="headerlink" title="Item 51: Beware the performance of string concatenation"></a>Item 51: Beware the performance of string concatenation</h3><p>String concatenation on n strings require time quadratic to n. Since they are immutable, each contatenation constructs a new string from scratch.  </p>
+<h3 id="Item-52-Refer-to-objects-by-their-interfaces"><a href="#Item-52-Refer-to-objects-by-their-interfaces" class="headerlink" title="Item 52: Refer to objects by their interfaces"></a>Item 52: Refer to objects by their interfaces</h3><p>If appropriate interface types exist, then parameters, return values, variables, and fields should all be declared using interface types. For example:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Good</span></span><br><span class="line">List&lt;Subscriber&gt; subscribers = <span class="keyword">new</span> Vector&lt;Subscriber&gt;();</span><br><span class="line"><span class="comment">// Bad</span></span><br><span class="line">Vector&lt;Subscriber&gt; subscribers = <span class="keyword">new</span> Vector&lt;Subscriber&gt;();</span><br></pre></td></tr></table></figure><br>This makes the code flexible.  </p>
+<h3 id="Item-53-Prefer-interfaces-to-reflection"><a href="#Item-53-Prefer-interfaces-to-reflection" class="headerlink" title="Item 53: Prefer interfaces to reflection"></a>Item 53: Prefer interfaces to reflection</h3><p>Reflection allows one class to use another, even if the latter class did not exist when the former was compiled. This comes with a lot of prices. Avoid it.  </p>
+<h3 id="Item-54-Use-native-JNI-methods-judiciously"><a href="#Item-54-Use-native-JNI-methods-judiciously" class="headerlink" title="Item 54: Use native (JNI) methods judiciously"></a>Item 54: Use native (JNI) methods judiciously</h3><p>Native methods can perform arbitrary computation in native languages before returning to Java. However, in many cases, JVM implementations are just much faster.</p>
+<h3 id="Item-55-Optimize-judiciously"><a href="#Item-55-Optimize-judiciously" class="headerlink" title="Item 55: Optimize judiciously"></a>Item 55: Optimize judiciously</h3><ul>
+<li>Strive to write good programs rather than fast ones.  </li>
+<li>Strive to avoid design decisions that limit performance.  </li>
+<li>Consider the performance consequences of your API design decisions.  </li>
+<li>Measure performances before and after each time you want to do optimization.</li>
+</ul>
+<h3 id="Item-56-Adhere-to-generally-accepted-naming-conventions"><a href="#Item-56-Adhere-to-generally-accepted-naming-conventions" class="headerlink" title="Item 56: Adhere to generally accepted naming conventions"></a>Item 56: Adhere to generally accepted naming conventions</h3><p>// I think obeying the conventions used by the company’s large codebase is pretty practical. Other (more experienced) people know about the naming conventions.</p>
+<h2 id="Chapter-9-Exceptions"><a href="#Chapter-9-Exceptions" class="headerlink" title="Chapter 9: Exceptions"></a>Chapter 9: Exceptions</h2><h3 id="Item-57-Use-exceptions-only-for-exceptional-conditions"><a href="#Item-57-Use-exceptions-only-for-exceptional-conditions" class="headerlink" title="Item 57: Use exceptions only for exceptional conditions"></a>Item 57: Use exceptions only for exceptional conditions</h3><ul>
+<li>Putting code inside a try-catch block inhibits certain optimizations done by JVM.  </li>
+<li>Exceptions are, as their name implies, to be used only for exceptional conditions: they should never be used for ordinary control flow.  </li>
+<li>A well-designed API must not force its clients to use exceptions for ordinary control flow.  </li>
+</ul>
+<h3 id="Item-58-Use-checked-exceptions-for-recoverable-conditions-and-runtime-exceptions-for-programming-errors"><a href="#Item-58-Use-checked-exceptions-for-recoverable-conditions-and-runtime-exceptions-for-programming-errors" class="headerlink" title="Item 58: Use checked exceptions for recoverable conditions and runtime exceptions for programming errors"></a>Item 58: Use checked exceptions for recoverable conditions and runtime exceptions for programming errors</h3><p>Java provides three kinds of throwables: checked (at compile time) exceptions, runtime exceptions, and errors. The author suggests the usages as mentioned in the title. A few other suggestions:  </p>
+<ul>
+<li>It’s best not to implement any new <code>Error</code> subclasses.  </li>
+<li>All of the unchecked throwables you implement should subclass <code>RuntimeException</code>.  </li>
+</ul>
+<h3 id="Item-59-Avoid-unnecessary-use-of-checked-exceptions"><a href="#Item-59-Avoid-unnecessary-use-of-checked-exceptions" class="headerlink" title="Item 59: Avoid unnecessary use of checked exceptions"></a>Item 59: Avoid unnecessary use of checked exceptions</h3><p>One technique for turning a checked exception into an unchecked exception is to break the method into two methods — the first one returns a boolean indicating whether the exception would be thrown.  </p>
+<h3 id="Item-60-Favor-the-use-of-standard-exceptions"><a href="#Item-60-Favor-the-use-of-standard-exceptions" class="headerlink" title="Item 60: Favor the use of standard exceptions"></a>Item 60: Favor the use of standard exceptions</h3><ul>
+<li>Using standard exceptions makes your API easier to learn, use and read.  </li>
+<li>The most commonly reused exceptions include:  </li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Exception</th>
+<th>Occasion for Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IllegalArgumentException</code></td>
+<td>Non-null parameter value is inappropriate</td>
+</tr>
+<tr>
+<td><code>IllegalStateException</code></td>
+<td>Object state is inappropriate for method invocation</td>
+</tr>
+<tr>
+<td><code>NullPointerException</code></td>
+<td>Parameter value is null where prohibited</td>
+</tr>
+<tr>
+<td><code>IndexOutOfBoundsException</code></td>
+<td>Index parameter value is out of range</td>
+</tr>
+<tr>
+<td><code>ConcurrentModificationException</code></td>
+<td>Concurrent modification of an object has been detected where it is prohibited</td>
+</tr>
+<tr>
+<td><code>UnsupportedOperationException</code></td>
+<td>Object does not support method</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="Item-61-Throw-exceptions-appropriate-to-the-abstraction"><a href="#Item-61-Throw-exceptions-appropriate-to-the-abstraction" class="headerlink" title="Item 61: Throw exceptions appropriate to the abstraction"></a>Item 61: Throw exceptions appropriate to the abstraction</h3><p>Higher layers should catch lower-level excptions andm in their place, throw exceptions that can be explained in terms of the higher-level abstraction. (<em>exception translation</em>)<br>While exception translation is superior to mindless propagation of exceptions from lower layers, it should not be overused.  </p>
+<h3 id="Item-62-Document-all-exceptions-thrown-by-each-method"><a href="#Item-62-Document-all-exceptions-thrown-by-each-method" class="headerlink" title="Item 62: Document all exceptions thrown by each method"></a>Item 62: Document all exceptions thrown by each method</h3><p>Always declare checked exceptions indicidually, and document precisely the conditions under which each one is thrown using the Javadoc <code>@throws</code> tag.<br>Use the Javadoc <code>@throws</code> tag to document each unchecked exception that a method can throw, but do not use the throws keyword to include unchecked exceptions in the method declaration.</p>
+<h3 id="Item-63-Include-failure-capture-information-in-detail-messages"><a href="#Item-63-Include-failure-capture-information-in-detail-messages" class="headerlink" title="Item 63: Include failure-capture information in detail messages"></a>Item 63: Include failure-capture information in detail messages</h3><p><code>printStackTrace()</code> returns result of the exception’s <code>toString()</code> method. This is usually the only message the user (programmers) of your API sees when a crash happens.  </p>
+<h3 id="Item-64-Strive-for-failure-atomicity"><a href="#Item-64-Strive-for-failure-atomicity" class="headerlink" title="Item 64: Strive for failure atomicity"></a>Item 64: Strive for failure atomicity</h3><p>Generally speaking, a failed method invocation should leave the object in the state that it was in prior to the invocation. Several methods to achieve it include:  </p>
+<ul>
+<li>Design immutable objects.  </li>
+<li>Order the computation so that any part that may fail takes place before any part that modifies the object.  </li>
+<li>Write recovery code that intercepts a failure that occurs in the midst of an operation and causes the object to roll back its initial state.  </li>
+<li>Perform the operation on a temporary copy of the object.  </li>
+</ul>
+<h3 id="Item-65-Don’t-ignore-exceptions"><a href="#Item-65-Don’t-ignore-exceptions" class="headerlink" title="Item 65: Don’t ignore exceptions"></a>Item 65: Don’t ignore exceptions</h3><p>An empty catch block defeats the purpose of exceptions. At least a comment explaining why it is appropriate to ignore the exception.  </p>
+<h2 id="Concurrency"><a href="#Concurrency" class="headerlink" title="Concurrency"></a>Concurrency</h2><h3 id="Item-66-Synchronize-access-to-shared-mutable-data"><a href="#Item-66-Synchronize-access-to-shared-mutable-data" class="headerlink" title="Item 66: Synchronize access to shared mutable data"></a>Item 66: Synchronize access to shared mutable data</h3><p>The <code>synchronized</code> keyword ensures that only a single thread can execute a method or block at one time.  </p>
+<ul>
+<li>JLS guarantees that reading or writing a variable is atomic unless the variable is of type <code>long</code> or <code>double</code>.  </li>
+<li>Synchronization is required for reliable communication between threads as well as for mutual exclusion.  </li>
+<li>Do not use <code>Thread.stop</code>. A recommended way to stop one thread from another is to poll a boolean which is initially false, and which is set to true by another thread. However, be careful about the <code>hoisting</code> mechanism — use an explicit method to poll, to prevent JVM to transform into a <code>while(true)</code> sentence.  </li>
+<li>Synchronization has no effect unless both read and write operations are synchronized.  </li>
+<li>In summary, when multiple threads share mutable data, each thread that reads or writes the data must perform synchronization.  </li>
+</ul>
+<h3 id="Item-67-Avoid-excessive-synchronization"><a href="#Item-67-Avoid-excessive-synchronization" class="headerlink" title="Item 67: Avoid excessive synchronization"></a>Item 67: Avoid excessive synchronization</h3><ul>
+<li>Never cede control to the client within a synchronized mthod or block. In other words, do not invoke a method that is designed to be overridden inside a synchronized region.  </li>
+<li>TODO - don’t quite understand the exmaple yet.</li>
+</ul>
+<h3 id="Item-68-Prefer-executors-and-tasks-to-threads"><a href="#Item-68-Prefer-executors-and-tasks-to-threads" class="headerlink" title="Item 68: Prefer executors and tasks to threads"></a>Item 68: Prefer executors and tasks to threads</h3><p><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/essential/concurrency/executors.html">Oracle’s tutorial here</a>.</p>
+<h3 id="Item-69-Prefer-concurrency-utilities-to-wait-and-notify"><a href="#Item-69-Prefer-concurrency-utilities-to-wait-and-notify" class="headerlink" title="Item 69: Prefer concurrency utilities to wait and notify"></a>Item 69: Prefer concurrency utilities to <code>wait</code> and <code>notify</code></h3><ul>
+<li>Given the difficulty of using <code>wait</code> and <code>notify</code> correctly, you should use the higher-level concurrency utilities instead.  </li>
+<li>Standard collection interfaces as <code>List</code>, <code>Queue</code>, and <code>Map</code> manage their own synchronization internally. It is therefore impossible to exclude concurrent activity from a concurrent collection.  </li>
+<li>For example, use <code>ConcurrentHashMap</code> in preference to <code>Collections.synchronizedMap</code> or <code>Hashtable</code>. This increases performances.  </li>
+<li><code>Synchronizers</code> are objects that enable threads to wait for one another, allowing them to coordinate their activities. The most commonly used synchronizers are <code>CountDownLatch</code> and <code>Semaphore</code>. Others include <code>CyclicBarrier</code> and <code>Exchanger</code>.  </li>
+<li>For interval timing, always use <code>System.nanoTime</code> in prefereence to <code>System.currentTimeMillis</code>.  </li>
+</ul>
+<h3 id="Item-70-Document-thread-safety"><a href="#Item-70-Document-thread-safety" class="headerlink" title="Item 70: Document thread safety"></a>Item 70: Document thread safety</h3><ul>
+<li>The presence of the synchronized modifier in a method declaration is an implementation detail, not a part of its exported API. It does NOT indicate that a method is thread-safe.  </li>
+<li>To enable safe concurrent use, a class must clearly document what level of thread safety it supports:<ul>
+<li>immutable</li>
+<li>unconditionally thread-safe. E.g. <code>Random</code> and <code>ConcurrentHashMap</code>  </li>
+<li>conditionally thread-safe. E.g. those collections returned by the <code>Collections.synchronized</code> wrappers, whose iterators require external synchronization.  </li>
+<li>not thread-safe. E.g. <code>ArrayList</code>, <code>HashMap</code>  </li>
+<li>thread-hostile. Very few Java methods are thread-hostile.  </li>
+</ul>
+</li>
+</ul>
+<h3 id="Item-71-Use-lazy-initialization-judiciously"><a href="#Item-71-Use-lazy-initialization-judiciously" class="headerlink" title="Item 71: Use lazy initialization judiciously"></a>Item 71: Use lazy initialization judiciously</h3><p>Lazy initialization advice include “don’t initialize unless you need to” (item 55). It increases the risk of accessing the lacily-initialized field.  </p>
+<ul>
+<li>If you use lazy initialization to break an initialization circularity, use a synchronized accessor.  </li>
+<li>If you need to use lazy initialization for performance on a static field, use the <em>lazy initialization holder class</em> idiom (a.k.a. initialize on-demand holder class idiom).  </li>
+<li>If you need to use lazy initialization for performance on an instance field, use the double-check idiom. Check a <strong>volatile</strong> field first time without locking; if it is not initialized, lock it, check again (key here! The double check!) and initialize it.  </li>
+</ul>
+<h3 id="Item-72-Don’t-depend-on-the-thread-scheduler"><a href="#Item-72-Don’t-depend-on-the-thread-scheduler" class="headerlink" title="Item 72: Don’t depend on the thread scheduler"></a>Item 72: Don’t depend on the thread scheduler</h3><p>Any program that relies on the thread scheduler for correctness or performance is likely to be nonportable.<br>Advice: ensure the number of runnable threads is not significantly greater than the number of processors.<br>Note: <code>Thread.yield()</code> is among the least portable Java methods.  </p>
+<h3 id="Item-73-Avoid-thread-groups"><a href="#Item-73-Avoid-thread-groups" class="headerlink" title="Item 73: Avoid thread groups"></a>Item 73: Avoid thread groups</h3><p>They are obsolete.</p>
+<h2 id="Serialization"><a href="#Serialization" class="headerlink" title="Serialization"></a>Serialization</h2><h3 id="Item-74-Implement-Serializable-judiciously"><a href="#Item-74-Implement-Serializable-judiciously" class="headerlink" title="Item 74: Implement Serializable judiciously"></a>Item 74: Implement <code>Serializable</code> judiciously</h3><ul>
+<li>Implementing <code>Serializable</code> decreases the flexibility to change a class’s implementation once it has been released.   </li>
+<li>Implementing <code>Serializable</code> increases the likelihood of bugs and security holes.  </li>
+<li>It increases the testing burden associated with releasing a new version of a class.  </li>
+<li>Classes edsigned for inheritance should reraly implement <code>Serializable</code>, and interfaces should rarely extend it.  </li>
+<li>(Personal experience) If an inner class is serialized, its outer class should be serializable (because of an implicit <code>self</code> reference). If a class is <code>Serializable</code>, then all of its inner classes should be <code>Serializable</code>, too. Therefore, (non-static) inner classes should <strong>not</strong> implement <code>Serializable</code>.    </li>
+</ul>
+<h3 id="Item-75-Consider-using-a-custom-serialized-form"><a href="#Item-75-Consider-using-a-custom-serialized-form" class="headerlink" title="Item 75: Consider using a custom serialized form"></a>Item 75: Consider using a custom serialized form</h3><p>Don’t accept the default serialized form without first considering whether it is appropriate — it is likely to be appropriate if the physical representation is identical to its logical content. Even if you decide it is appropriate, you often must provide a <code>readObject</code> method to ensure invariants and security.  </p>
+<ul>
+<li>Using the default form ties the exported API to the current internal representation, may consume excessive space, time, and may cause stack overflows.    </li>
+</ul>
+<h3 id="Item-76-Write-readObject-methods-defensively"><a href="#Item-76-Write-readObject-methods-defensively" class="headerlink" title="Item 76: Write readObject methods defensively"></a>Item 76: Write <code>readObject</code> methods defensively</h3><p>When an object is deserialized, defensively copy any field containing an object reference that a client must not process.  </p>
+<h3 id="Item-77-For-instance-control-prefer-enum-types-to-readResolve"><a href="#Item-77-For-instance-control-prefer-enum-types-to-readResolve" class="headerlink" title="Item 77: For instance control, prefer enum types to readResolve"></a>Item 77: For instance control, prefer <code>enum</code> types to <code>readResolve</code></h3><ul>
+<li>Any <code>readObject</code> method, whether explicit or default, returns a newly created instance.  </li>
+<li><code>readResolve</code> allows you to substitute another instance for the one created by <code>readObject</code>. However, is you depend on <code>readResolve</code> for instance control, all instance fields with object reference types <em>must</em> be declared transient.   </li>
+<li>use <code>enum</code> to enforce instance control invariants wherever possible.  </li>
+</ul>
+<h3 id="Item-78-Consider-serialization-proxies-instead-of-serialized-instances"><a href="#Item-78-Consider-serialization-proxies-instead-of-serialized-instances" class="headerlink" title="Item 78: Consider serialization proxies instead of serialized instances"></a>Item 78: Consider serialization proxies instead of serialized instances</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://ziningzhu.me/2017/06/20/2017_06_effective-java/" data-id="ckljodjx0001b3k1y43tc16du" class="article-share-link">Share</a>
+      
+        <a href="http://ziningzhu.me/2017/06/20/2017_06_effective-java/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/11/01/2017_11_pytorch/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          PyTorch Notes
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/05/27/2017_05_intro_to_phil/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Intro to Philosophy</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+    <aside id="sidebar" class="outer">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/12/22/2020_12_books/">&bull; Cool Books in 2020</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/30/2020_09_RSTprobe/">&bull; Examining the rhetorical capacities of neural language models</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/21/2020_09_infoprobe/">&bull; An information theoretic view on selecting linguistic probes</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/10/2020_07_acl2020/">&bull; Trends in ACL 2020</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/12/2020_04_bayes_recap/">&bull; Tested Positive. Do I Have It?</a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/26/2020_02_pytorch_questions/">&bull; Pytorch Questions</a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/12/2020_02_AAAI/">&bull; AAAI2020</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/24/2020_01_deconfounding_age/">&bull; Deconfounding Age Impacts</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/31/2019_12_books/">&bull; Books I loved in 2019</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/09/2019_12_bash/">&bull; Familiarizing with Bash</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/15/2019_08_Kant/">&bull; When Pearl Meets Kant</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/09/2019_06_NAACL2019/">&bull; NAACL2019</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/15/2019_04_undergraduate_thesis/">&bull; Compositional Alignment of Word Embeddings</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/31/2019_03_distributed_systems/">&bull; Software Lessons from Distributed Systems</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/31/2018_12_books/">&bull; 4+4 Books I loved in 2018</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ExplainableAI/" style="font-size: 12.5px;">ExplainableAI</a> <a href="/tags/GAN/" style="font-size: 10px;">GAN</a> <a href="/tags/NLP/" style="font-size: 20px;">NLP</a> <a href="/tags/PGM/" style="font-size: 10px;">PGM</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/VAE/" style="font-size: 10px;">VAE</a> <a href="/tags/algorithms/" style="font-size: 12.5px;">algorithms</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/bash/" style="font-size: 10px;">bash</a> <a href="/tags/book-review/" style="font-size: 17.5px;">book-review</a> <a href="/tags/conferences/" style="font-size: 15px;">conferences</a> <a href="/tags/database/" style="font-size: 10px;">database</a> <a href="/tags/drone/" style="font-size: 10px;">drone</a> <a href="/tags/java/" style="font-size: 12.5px;">java</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/learning/" style="font-size: 12.5px;">learning</a> <a href="/tags/linguistics/" style="font-size: 10px;">linguistics</a> <a href="/tags/ml-basics/" style="font-size: 20px;">ml-basics</a> <a href="/tags/os/" style="font-size: 10px;">os</a> <a href="/tags/philosophy/" style="font-size: 15px;">philosophy</a> <a href="/tags/pytorch/" style="font-size: 12.5px;">pytorch</a> <a href="/tags/robotics/" style="font-size: 10px;">robotics</a> <a href="/tags/teamwork/" style="font-size: 10px;">teamwork</a> <a href="/tags/web/" style="font-size: 15px;">web</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Academia/">Academia</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Literature/">Literature</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning/">Machine Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Philosophy/">Philosophy</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Software/">Software</a></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 Zining Zhu
+      <br>
+      Powered by <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a> with <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo-theme-landscape">Landscape</a>.
+    </div>
+  </div>
+
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'ziningzhu-me';
+  
+  var disqus_url = 'http://ziningzhu.me/2017/06/20/2017_06_effective-java/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" id=""></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
