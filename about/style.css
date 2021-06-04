@@ -121,21 +121,7 @@
 .network-icons {
     padding-top: 1em;
 }
-.publication span{
-    font-size: smaller;
-    color: white;
-    padding: 2px 5px 2px 5px;
-}
-.publication .year {
-    color: #6e6e6e;
-    margin-top: 1em; margin-bottom: -0.5em;
-}
 .publication .pubitem {
     margin-top: 1em; 
     font-size:smaller;
 }
-.publication span {border-radius: .25em;}
-.label-paper {background-color: #6e6e6e;}
-.label-bib {background-color: #1c80bc;}
-.label-blog {background-color: #21bb21;} 
-.label-press {background-color: #ea921b;}
