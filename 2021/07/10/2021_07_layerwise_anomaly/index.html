@@ -13,7 +13,7 @@
 <meta property="og:description" content="This paper uses Gaussian mixture model to detect how contextualized LMs show surprisal given different types of anomalies.">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-07-10T04:01:00.000Z">
-<meta property="article:modified_time" content="2022-04-23T15:05:11.921Z">
+<meta property="article:modified_time" content="2022-04-23T15:23:32.113Z">
 <meta property="article:author" content="Zining Zhu">
 <meta property="article:tag" content="NLP">
 <meta property="article:tag" content="linguistics">
@@ -125,7 +125,10 @@ ga('send', 'pageview');
         <p>This paper uses Gaussian mixture model to detect how contextualized LMs show surprisal given different types of anomalies.</p>
 <span id="more"></span>
 <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>Transformer language models have shown remarkable ability in detecting when a word is anomalous in context, but likelihood scores offer no information about the cause of the anomaly. In this work, we use Gaussian models for density estimation at intermediate layers of three language models (BERT, RoBERTa, and XLNet), and evaluate our method on BLiMP, a grammaticality judgement benchmark. In lower layers, surprisal is highly correlated to low token frequency, but this correlation diminishes in upper layers. Next, we gather datasets of morphosyntactic, semantic, and commonsense anomalies from psycholinguistic studies; we find that the best performing model RoBERTa exhibits surprisal in earlier layers when the anomaly is morphosyntactic than when it is semantic, while commonsense anomalies do not exhibit surprisal at any intermediate layer. These results suggest that language models employ separate mechanisms to detect different types of linguistic anomalies.</p>
-<h2 id="Presentation"><a href="#Presentation" class="headerlink" title="Presentation"></a>Presentation</h2><iframe width="560" height="315" src="https://www.youtube.com/embed/tKkp_Ao3_W4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<h2 id="Presentation"><a href="#Presentation" class="headerlink" title="Presentation"></a>Presentation</h2><!--Use "video" and "video_container" classs to allow scaling w/ mobile compatibility-->
+<div class="video_container">
+    <iframe src="https://www.youtube.com/embed/tKkp_Ao3_W4" frameborder="0" allow="accerometer; autoplay; clipboard-write; encrypted-media; gyroscope; pucture-in-picture" allowfullscreen class="video"></iframe>
+</div>
 
 <p>Following is Bai’s slide decks presented at SPOC lab meeting in February 2021.</p>
 <iframe id="iframepdf" style="width: 100%; min-height: 600px;" src="https://res.cloudinary.com/dnijsrvoc/image/upload/v1650725869/Blog/res/202102_Bai_Layerwise_Anomaly_Presentation_kca6ql.pdf"></iframe>
