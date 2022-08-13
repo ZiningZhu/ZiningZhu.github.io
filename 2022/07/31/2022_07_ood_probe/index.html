@@ -3,19 +3,20 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>Database | Zining&#39;s Blog</title>
+  <title>OOD-Probe: A Neural Interpretation of Out-of-Domain Generalization | Zining&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="This blog contains some database information that I have been putting together recently.  SQL and Relational Algebra OLAP, OLTP NoSQL: K-V, Column-Family, Document, Graphical References">
+  <meta name="description" content="This paper probes the behaviors of DNNs in generalizations. We find that the information of out-of-domain generalization encodes more “linearly” on the intermediate layers than other layers for VLCS a">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Database">
-<meta property="og:url" content="https://ziningzhu.me/2016/11/04/2016_11_database/index.html">
+<meta property="og:title" content="OOD-Probe: A Neural Interpretation of Out-of-Domain Generalization">
+<meta property="og:url" content="https://ziningzhu.me/2022/07/31/2022_07_ood_probe/index.html">
 <meta property="og:site_name" content="Zining&#39;s Blog">
-<meta property="og:description" content="This blog contains some database information that I have been putting together recently.  SQL and Relational Algebra OLAP, OLTP NoSQL: K-V, Column-Family, Document, Graphical References">
+<meta property="og:description" content="This paper probes the behaviors of DNNs in generalizations. We find that the information of out-of-domain generalization encodes more “linearly” on the intermediate layers than other layers for VLCS a">
 <meta property="og:locale">
-<meta property="article:published_time" content="2016-11-04T04:50:00.000Z">
-<meta property="article:modified_time" content="2021-02-23T22:19:54.638Z">
+<meta property="article:published_time" content="2022-07-31T22:04:00.000Z">
+<meta property="article:modified_time" content="2022-08-13T04:20:04.523Z">
 <meta property="article:author" content="Zining Zhu">
-<meta property="article:tag" content="database">
+<meta property="article:tag" content="ExplainableAI">
+<meta property="article:tag" content="OOD">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;zhuzining">
   
@@ -94,14 +95,14 @@ ga('send', 'pageview');
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-2016_11_database" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-2022_07_ood_probe" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/11/04/2016_11_database/" class="article-date">
-  <time datetime="2016-11-04T04:50:00.000Z" itemprop="datePublished">2016-11-04</time>
+    <a href="/2022/07/31/2022_07_ood_probe/" class="article-date">
+  <time datetime="2022-07-31T22:04:00.000Z" itemprop="datePublished">2022-07-31</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Software/">Software</a>
+    <a class="article-category-link" href="/categories/Academia/">Academia</a>
   </div>
 
   </div>
@@ -112,7 +113,7 @@ ga('send', 'pageview');
         
   
     <h1 class="article-title" itemprop="name">
-      Database
+      OOD-Probe: A Neural Interpretation of Out-of-Domain Generalization
     </h1>
   
 
@@ -120,76 +121,24 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>This blog contains some database information that I have been putting together recently.</p>
-<ul>
-<li>SQL and Relational Algebra</li>
-<li>OLAP, OLTP</li>
-<li>NoSQL: K-V, Column-Family, Document, Graphical</li>
-<li>References<span id="more"></span>
-</li>
-</ul>
-<h2 id="SQL-and-Relational-Algebra"><a href="#SQL-and-Relational-Algebra" class="headerlink" title="SQL and Relational Algebra"></a>SQL and Relational Algebra</h2><p>(Most of this part come from CSC343 in UofT)</p>
-<h4 id="Terminologies"><a href="#Terminologies" class="headerlink" title="Terminologies"></a>Terminologies</h4><ul>
-<li>DDL (Data Define Language), DML (Data Modification Language), DCL (Data Control Language)<ul>
-<li>DDL commands: CREATE, ALTER, DROP</li>
-<li>DML commands: SELECT, INSERT, UPDATE, DELETE</li>
-<li>DCL commands: GRANT, REVOKE</li>
-</ul>
-</li>
-<li>key<ul>
-<li>primary key: main index. Build B-tree to index them.</li>
-<li>foreign key: provides reference to another table, allowing <code>JOIN</code> operations to happen.</li>
-</ul>
-</li>
-</ul>
-<h4 id="RA-Operations"><a href="#RA-Operations" class="headerlink" title="RA Operations"></a>RA Operations</h4><ul>
-<li>project (select)</li>
-<li>join<ul>
-<li>cross (or, inner) join    </li>
-<li>outer join (left / right / full).<br>  Differences between inner and outer join can be found <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/17759687/cross-join-vs-inner-join-in-sql-server-2008/21794288">here</a></li>
-</ul>
-</li>
-<li>Grouping: ‘having’ instead of ‘where’</li>
-<li>aggregate function</li>
-</ul>
-<h4 id="Denormalization-of-Database"><a href="#Denormalization-of-Database" class="headerlink" title="Denormalization of Database"></a>Denormalization of Database</h4><ul>
-<li>Denormalization is an optimization technique. By adding redundant data, we might avoid the costly join operations.</li>
-</ul>
-<h4 id="Entity-Relation-Model"><a href="#Entity-Relation-Model" class="headerlink" title="Entity-Relation Model"></a>Entity-Relation Model</h4><ul>
-<li>Developed by Peter Chen in 1976 in <a target="_blank" rel="noopener" href="https://pdfs.semanticscholar.org/e4cd/a968b46b3147bf9e8102543b927d28529ecc.pdf">this paper</a></li>
-<li>Cardinality specifies how many instances of an entity relate to one instance of another entity.</li>
-<li>Ordinality describes the minimal number of relationships.</li>
-</ul>
-<h2 id="OLAP-vs-OLTP"><a href="#OLAP-vs-OLTP" class="headerlink" title="OLAP vs. OLTP"></a>OLAP vs. OLTP</h2><ul>
-<li>OLAP: On-Line Analytical Processing</li>
-<li>OLTP: On-Line Transactional Processing.<br>Detailed difference described <a target="_blank" rel="noopener" href="http://stackoverflow.com/questions/21900185/what-are-oltp-and-olap-what-is-the-difference-between-them">here</a></li>
-</ul>
-<h2 id="NoSQL-K-V-Column-Family-Document-Graphical"><a href="#NoSQL-K-V-Column-Family-Document-Graphical" class="headerlink" title="NoSQL: K-V, Column-Family, Document, Graphical"></a>NoSQL: K-V, Column-Family, Document, Graphical</h2><ul>
-<li>CAP dilemma</li>
-<li>Types of NoSQL Databases:<ul>
-<li>K-V pair</li>
-<li>Column-Family (eg: GFS)</li>
-<li>Document (eg: MongoDB)</li>
-<li>Graphical</li>
-</ul>
-</li>
-<li>There’s a brief introduction <a target="_blank" rel="noopener" href="http://darkhouse.com.cn/blog/4">here</a></li>
-</ul>
-<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
-<li>Early database model, disk memory access (sequential / random memory access), Relational model, E-R model, Object model: <a target="_blank" rel="noopener" href="http://darkhouse.com.cn/blog/2">link</a>  </li>
-<li>Codd’s paper laying the mathematical foundation for relational algebra <a target="_blank" rel="noopener" href="http://www.seas.upenn.edu/~zives/03f/cis550/codd.pdf">link</a></li>
-<li>OLAP <a target="_blank" rel="noopener" href="http://darkhouse.com.cn/blog/3">link</a></li>
-</ul>
+        <p>This paper probes the behaviors of DNNs in generalizations. We find that the information of out-of-domain generalization encodes more “linearly” on the intermediate layers than other layers for VLCS and PACS, but not so for RotatedMNIST.<br><span id="more"></span></p>
+<h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>The ability to generalize out-of-domain (OOD) is an important goal for deep neural network development, and researchers have proposed many high-performing OOD generalization methods from various foundations. While many OOD algorithms perform well in various scenarios, these systems are evaluated as ``black-boxes’’. Instead, we propose a flexible framework that evaluates OOD systems with finer granularity using a probing module that predicts the originating domain from intermediate representations. We find that representations always encode some information about the domain. While the layerwise encoding patterns remain largely stable across different OOD algorithms, they vary across the datasets. For example, the information about rotation (on RotatedMNIST) is the most visible on the lower layers, while the information about style (on VLCS and PACS) is the most visible on the middle layers. In addition, the high probing results correlate to the domain generalization performances, leading to further directions in developing OOD generalization systems.</p>
+<h2 id="Slides"><a href="#Slides" class="headerlink" title="Slides"></a>Slides</h2><iframe id="iframepdf" style="width: 100%; min-height: 600px;" src="https://res.cloudinary.com/dnijsrvoc/image/upload/v1659373079/Blog/res/202207_ICML_SCIS_OOD_Probe_y2pzzl.pdf"></iframe>
+
+<h2 id="Video"><a href="#Video" class="headerlink" title="Video"></a>Video</h2><!--Use "video" and "video_container" classs to allow scaling w/ mobile compatibility-->
+<div class="video_container">
+    <iframe src="https://www.youtube.com/embed/geCReScVeZg" frameborder="0" allow="accerometer; autoplay; clipboard-write; encrypted-media; gyroscope; pucture-in-picture" allowfullscreen class="video"></iframe>
+</div>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://ziningzhu.me/2016/11/04/2016_11_database/" data-id="ckljodjwt00093k1y4x877kzt" class="article-share-link">Share</a>
+      <a data-url="https://ziningzhu.me/2022/07/31/2022_07_ood_probe/" data-id="cl6re6tow00006srearlkdf7l" class="article-share-link">Share</a>
       
-        <a href="https://ziningzhu.me/2016/11/04/2016_11_database/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="https://ziningzhu.me/2022/07/31/2022_07_ood_probe/#disqus_thread" class="article-comment-link">Comments</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/database/" rel="tag">database</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ExplainableAI/" rel="tag">ExplainableAI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OOD/" rel="tag">OOD</a></li></ul>
 
     </footer>
   </div>
@@ -197,19 +146,10 @@ ga('send', 'pageview');
     
 <nav id="article-nav">
   
-    <a href="/2016/12/25/2016_12_hackathon_website/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Small Things in a Hackathon Website
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/10/03/2016_10_Algs/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2022/07/30/2022_07_ood_labels/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Basic Algorithms</div>
+      <div class="article-nav-title">Out-of-Distribution Failure through the Lens of Labeling Mechanisms: An Information Theoretic Approach</div>
     </a>
   
 </nav>
@@ -237,6 +177,14 @@ ga('send', 'pageview');
       <ul>
         
           <li>
+            <a href="/2022/07/31/2022_07_ood_probe/">&bull; OOD-Probe: A Neural Interpretation of Out-of-Domain Generalization</a>
+          </li>
+        
+          <li>
+            <a href="/2022/07/30/2022_07_ood_labels/">&bull; Out-of-Distribution Failure through the Lens of Labeling Mechanisms: An Information Theoretic Approach</a>
+          </li>
+        
+          <li>
             <a href="/2022/04/23/2022_04_probing_datasets/">&bull; On the data requirements of probing</a>
           </li>
         
@@ -261,7 +209,7 @@ ga('send', 'pageview');
           </li>
         
           <li>
-            <a href="/2021/07/10/2021_07_layerwise_anomaly/">&bull; How is BERT surprised? Layerwise detection of linguistic anomalies</a>
+            <a href="/2021/07/09/2021_07_layerwise_anomaly/">&bull; How is BERT surprised? Layerwise detection of linguistic anomalies</a>
           </li>
         
           <li>
@@ -288,14 +236,6 @@ ga('send', 'pageview');
             <a href="/2020/07/10/2020_07_acl2020/">&bull; Trends in ACL 2020</a>
           </li>
         
-          <li>
-            <a href="/2020/04/12/2020_04_bayes_recap/">&bull; Tested Positive. Do I Have It?</a>
-          </li>
-        
-          <li>
-            <a href="/2020/02/26/2020_02_pytorch_questions/">&bull; Pytorch Questions</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -306,7 +246,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/ExplainableAI/" style="font-size: 18.57px;">ExplainableAI</a> <a href="/tags/GAN/" style="font-size: 10px;">GAN</a> <a href="/tags/Information/" style="font-size: 10px;">Information</a> <a href="/tags/NLP/" style="font-size: 20px;">NLP</a> <a href="/tags/PGM/" style="font-size: 10px;">PGM</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Society/" style="font-size: 10px;">Society</a> <a href="/tags/VAE/" style="font-size: 10px;">VAE</a> <a href="/tags/algorithms/" style="font-size: 11.43px;">algorithms</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/bash/" style="font-size: 10px;">bash</a> <a href="/tags/book-review/" style="font-size: 17.14px;">book-review</a> <a href="/tags/conferences/" style="font-size: 15.71px;">conferences</a> <a href="/tags/database/" style="font-size: 10px;">database</a> <a href="/tags/drone/" style="font-size: 10px;">drone</a> <a href="/tags/java/" style="font-size: 11.43px;">java</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/learning/" style="font-size: 11.43px;">learning</a> <a href="/tags/linguistics/" style="font-size: 12.86px;">linguistics</a> <a href="/tags/ml-basics/" style="font-size: 18.57px;">ml-basics</a> <a href="/tags/os/" style="font-size: 10px;">os</a> <a href="/tags/philosophy/" style="font-size: 14.29px;">philosophy</a> <a href="/tags/pytorch/" style="font-size: 11.43px;">pytorch</a> <a href="/tags/robotics/" style="font-size: 10px;">robotics</a> <a href="/tags/teamwork/" style="font-size: 10px;">teamwork</a> <a href="/tags/web/" style="font-size: 14.29px;">web</a>
+      <a href="/tags/ExplainableAI/" style="font-size: 18.75px;">ExplainableAI</a> <a href="/tags/GAN/" style="font-size: 10px;">GAN</a> <a href="/tags/Information/" style="font-size: 10px;">Information</a> <a href="/tags/NLP/" style="font-size: 20px;">NLP</a> <a href="/tags/OOD/" style="font-size: 11.25px;">OOD</a> <a href="/tags/PGM/" style="font-size: 10px;">PGM</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Society/" style="font-size: 10px;">Society</a> <a href="/tags/VAE/" style="font-size: 10px;">VAE</a> <a href="/tags/algorithms/" style="font-size: 11.25px;">algorithms</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/bash/" style="font-size: 10px;">bash</a> <a href="/tags/book-review/" style="font-size: 16.25px;">book-review</a> <a href="/tags/conferences/" style="font-size: 15px;">conferences</a> <a href="/tags/database/" style="font-size: 10px;">database</a> <a href="/tags/drone/" style="font-size: 10px;">drone</a> <a href="/tags/java/" style="font-size: 11.25px;">java</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/learning/" style="font-size: 11.25px;">learning</a> <a href="/tags/linguistics/" style="font-size: 12.5px;">linguistics</a> <a href="/tags/ml-basics/" style="font-size: 17.5px;">ml-basics</a> <a href="/tags/os/" style="font-size: 10px;">os</a> <a href="/tags/philosophy/" style="font-size: 13.75px;">philosophy</a> <a href="/tags/pytorch/" style="font-size: 11.25px;">pytorch</a> <a href="/tags/robotics/" style="font-size: 10px;">robotics</a> <a href="/tags/teamwork/" style="font-size: 10px;">teamwork</a> <a href="/tags/web/" style="font-size: 13.75px;">web</a>
     </div>
   </div>
 
@@ -347,7 +287,7 @@ ga('send', 'pageview');
 <script>
   var disqus_shortname = 'ziningzhu-me';
   
-  var disqus_url = 'https://ziningzhu.me/2016/11/04/2016_11_database/';
+  var disqus_url = 'https://ziningzhu.me/2022/07/31/2022_07_ood_probe/';
   
   (function(){
     var dsq = document.createElement('script');

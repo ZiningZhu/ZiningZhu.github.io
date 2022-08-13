@@ -3,21 +3,14 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>How is BERT surprised? Layerwise detection of linguistic anomalies | Zining&#39;s Blog</title>
+  <title>Archives: 2022/7 | Zining&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="This paper uses Gaussian mixture model to detect how contextualized LMs show surprisal given different types of anomalies.">
-<meta property="og:type" content="article">
-<meta property="og:title" content="How is BERT surprised? Layerwise detection of linguistic anomalies">
-<meta property="og:url" content="https://ziningzhu.me/2021/07/10/2021_07_layerwise_anomaly/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Zining&#39;s Blog">
+<meta property="og:url" content="https://ziningzhu.me/archives/2022/07/index.html">
 <meta property="og:site_name" content="Zining&#39;s Blog">
-<meta property="og:description" content="This paper uses Gaussian mixture model to detect how contextualized LMs show surprisal given different types of anomalies.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2021-07-10T04:01:00.000Z">
-<meta property="article:modified_time" content="2022-04-23T15:23:32.113Z">
 <meta property="article:author" content="Zining Zhu">
-<meta property="article:tag" content="NLP">
-<meta property="article:tag" content="linguistics">
-<meta property="article:tag" content="ExplainableAI">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;zhuzining">
   
@@ -96,84 +89,60 @@ ga('send', 'pageview');
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-2021_07_layerwise_anomaly" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/07/10/2021_07_layerwise_anomaly/" class="article-date">
-  <time datetime="2021-07-10T04:01:00.000Z" itemprop="datePublished">2021-07-10</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Academia/">Academia</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+        <section id="main">
   
-    <h1 class="article-title" itemprop="name">
-      How is BERT surprised? Layerwise detection of linguistic anomalies
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2022" class="archive-year">2022</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2022/07/31/2022_07_ood_probe/" class="archive-article-date">
+  <time datetime="2022-07-31T22:04:00.000Z" itemprop="datePublished">Jul 31</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2022/07/31/2022_07_ood_probe/">OOD-Probe: A Neural Interpretation of Out-of-Domain Generalization</a>
     </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>This paper uses Gaussian mixture model to detect how contextualized LMs show surprisal given different types of anomalies.</p>
-<span id="more"></span>
-<h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>Transformer language models have shown remarkable ability in detecting when a word is anomalous in context, but likelihood scores offer no information about the cause of the anomaly. In this work, we use Gaussian models for density estimation at intermediate layers of three language models (BERT, RoBERTa, and XLNet), and evaluate our method on BLiMP, a grammaticality judgement benchmark. In lower layers, surprisal is highly correlated to low token frequency, but this correlation diminishes in upper layers. Next, we gather datasets of morphosyntactic, semantic, and commonsense anomalies from psycholinguistic studies; we find that the best performing model RoBERTa exhibits surprisal in earlier layers when the anomaly is morphosyntactic than when it is semantic, while commonsense anomalies do not exhibit surprisal at any intermediate layer. These results suggest that language models employ separate mechanisms to detect different types of linguistic anomalies.</p>
-<h2 id="Presentation"><a href="#Presentation" class="headerlink" title="Presentation"></a>Presentation</h2><!--Use "video" and "video_container" classs to allow scaling w/ mobile compatibility-->
-<div class="video_container">
-    <iframe src="https://www.youtube.com/embed/tKkp_Ao3_W4" frameborder="0" allow="accerometer; autoplay; clipboard-write; encrypted-media; gyroscope; pucture-in-picture" allowfullscreen class="video"></iframe>
-</div>
-
-<p>Following is Bai’s slide decks presented at SPOC lab meeting in February 2021.</p>
-<iframe id="iframepdf" style="width: 100%; min-height: 600px;" src="https://res.cloudinary.com/dnijsrvoc/image/upload/v1650725869/Blog/res/202102_Bai_Layerwise_Anomaly_Presentation_kca6ql.pdf"></iframe>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://ziningzhu.me/2021/07/10/2021_07_layerwise_anomaly/" data-id="cl2bymo3q0008p08z9suieqq7" class="article-share-link">Share</a>
-      
-        <a href="https://ziningzhu.me/2021/07/10/2021_07_layerwise_anomaly/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ExplainableAI/" rel="tag">ExplainableAI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linguistics/" rel="tag">linguistics</a></li></ul>
-
-    </footer>
+    </header>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2021/07/20/2021_07_writing_features/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          What do writing features tell us about AI papers?
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2021/06/10/2021_06_NAACL/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">NAACL 2021 papers</div>
-    </a>
-  
-</nav>
-
-  
 </article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2022/07/30/2022_07_ood_labels/" class="archive-article-date">
+  <time datetime="2022-07-30T21:04:00.000Z" itemprop="datePublished">Jul 30</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2022/07/30/2022_07_ood_labels/">Out-of-Distribution Failure through the Lens of Labeling Mechanisms: An Information Theoretic Approach</a>
+    </h1>
+  
 
-
-<section id="comments">
-  <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </header>
   </div>
-</section>
+</article>
+  
+  
+    </div></section>
+  
+
+
 </section>
         
       </div>
@@ -186,6 +155,14 @@ ga('send', 'pageview');
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/07/31/2022_07_ood_probe/">&bull; OOD-Probe: A Neural Interpretation of Out-of-Domain Generalization</a>
+          </li>
+        
+          <li>
+            <a href="/2022/07/30/2022_07_ood_labels/">&bull; Out-of-Distribution Failure through the Lens of Labeling Mechanisms: An Information Theoretic Approach</a>
+          </li>
         
           <li>
             <a href="/2022/04/23/2022_04_probing_datasets/">&bull; On the data requirements of probing</a>
@@ -212,7 +189,7 @@ ga('send', 'pageview');
           </li>
         
           <li>
-            <a href="/2021/07/10/2021_07_layerwise_anomaly/">&bull; How is BERT surprised? Layerwise detection of linguistic anomalies</a>
+            <a href="/2021/07/09/2021_07_layerwise_anomaly/">&bull; How is BERT surprised? Layerwise detection of linguistic anomalies</a>
           </li>
         
           <li>
@@ -239,14 +216,6 @@ ga('send', 'pageview');
             <a href="/2020/07/10/2020_07_acl2020/">&bull; Trends in ACL 2020</a>
           </li>
         
-          <li>
-            <a href="/2020/04/12/2020_04_bayes_recap/">&bull; Tested Positive. Do I Have It?</a>
-          </li>
-        
-          <li>
-            <a href="/2020/02/26/2020_02_pytorch_questions/">&bull; Pytorch Questions</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -257,7 +226,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/ExplainableAI/" style="font-size: 18.57px;">ExplainableAI</a> <a href="/tags/GAN/" style="font-size: 10px;">GAN</a> <a href="/tags/Information/" style="font-size: 10px;">Information</a> <a href="/tags/NLP/" style="font-size: 20px;">NLP</a> <a href="/tags/PGM/" style="font-size: 10px;">PGM</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Society/" style="font-size: 10px;">Society</a> <a href="/tags/VAE/" style="font-size: 10px;">VAE</a> <a href="/tags/algorithms/" style="font-size: 11.43px;">algorithms</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/bash/" style="font-size: 10px;">bash</a> <a href="/tags/book-review/" style="font-size: 17.14px;">book-review</a> <a href="/tags/conferences/" style="font-size: 15.71px;">conferences</a> <a href="/tags/database/" style="font-size: 10px;">database</a> <a href="/tags/drone/" style="font-size: 10px;">drone</a> <a href="/tags/java/" style="font-size: 11.43px;">java</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/learning/" style="font-size: 11.43px;">learning</a> <a href="/tags/linguistics/" style="font-size: 12.86px;">linguistics</a> <a href="/tags/ml-basics/" style="font-size: 18.57px;">ml-basics</a> <a href="/tags/os/" style="font-size: 10px;">os</a> <a href="/tags/philosophy/" style="font-size: 14.29px;">philosophy</a> <a href="/tags/pytorch/" style="font-size: 11.43px;">pytorch</a> <a href="/tags/robotics/" style="font-size: 10px;">robotics</a> <a href="/tags/teamwork/" style="font-size: 10px;">teamwork</a> <a href="/tags/web/" style="font-size: 14.29px;">web</a>
+      <a href="/tags/ExplainableAI/" style="font-size: 18.75px;">ExplainableAI</a> <a href="/tags/GAN/" style="font-size: 10px;">GAN</a> <a href="/tags/Information/" style="font-size: 10px;">Information</a> <a href="/tags/NLP/" style="font-size: 20px;">NLP</a> <a href="/tags/OOD/" style="font-size: 11.25px;">OOD</a> <a href="/tags/PGM/" style="font-size: 10px;">PGM</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Society/" style="font-size: 10px;">Society</a> <a href="/tags/VAE/" style="font-size: 10px;">VAE</a> <a href="/tags/algorithms/" style="font-size: 11.25px;">algorithms</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/bash/" style="font-size: 10px;">bash</a> <a href="/tags/book-review/" style="font-size: 16.25px;">book-review</a> <a href="/tags/conferences/" style="font-size: 15px;">conferences</a> <a href="/tags/database/" style="font-size: 10px;">database</a> <a href="/tags/drone/" style="font-size: 10px;">drone</a> <a href="/tags/java/" style="font-size: 11.25px;">java</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/learning/" style="font-size: 11.25px;">learning</a> <a href="/tags/linguistics/" style="font-size: 12.5px;">linguistics</a> <a href="/tags/ml-basics/" style="font-size: 17.5px;">ml-basics</a> <a href="/tags/os/" style="font-size: 10px;">os</a> <a href="/tags/philosophy/" style="font-size: 13.75px;">philosophy</a> <a href="/tags/pytorch/" style="font-size: 11.25px;">pytorch</a> <a href="/tags/robotics/" style="font-size: 10px;">robotics</a> <a href="/tags/teamwork/" style="font-size: 10px;">teamwork</a> <a href="/tags/web/" style="font-size: 13.75px;">web</a>
     </div>
   </div>
 
@@ -298,13 +267,11 @@ ga('send', 'pageview');
 <script>
   var disqus_shortname = 'ziningzhu-me';
   
-  var disqus_url = 'https://ziningzhu.me/2021/07/10/2021_07_layerwise_anomaly/';
-  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>
