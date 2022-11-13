@@ -3,20 +3,19 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>Thoughts about the Free Lunch | Zining&#39;s Blog</title>
+  <title>Predicting Fine-tuning Performance with Probing | Zining&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="This post starts when I was reviewing the no free lunch theorem in machine learning. A machine learning model being able to predict with high accuracy from unseen data should have knowledge about the">
+  <meta name="description" content="Probing results can be useful for model developments.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Thoughts about the Free Lunch">
-<meta property="og:url" content="https://ziningzhu.me/2018/05/01/2018_05_no_free_lunch/index.html">
+<meta property="og:title" content="Predicting Fine-tuning Performance with Probing">
+<meta property="og:url" content="https://ziningzhu.me/2022/11/12/2022_11_fine_tuning_with_probing/index.html">
 <meta property="og:site_name" content="Zining&#39;s Blog">
-<meta property="og:description" content="This post starts when I was reviewing the no free lunch theorem in machine learning. A machine learning model being able to predict with high accuracy from unseen data should have knowledge about the">
+<meta property="og:description" content="Probing results can be useful for model developments.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2018-05-02T04:34:00.000Z">
-<meta property="article:modified_time" content="2021-02-23T22:19:54.640Z">
+<meta property="article:published_time" content="2022-11-13T03:05:00.000Z">
+<meta property="article:modified_time" content="2022-11-13T03:11:16.654Z">
 <meta property="article:author" content="Zining Zhu">
-<meta property="article:tag" content="philosophy">
-<meta property="article:tag" content="learning">
+<meta property="article:tag" content="ExplainableAI">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;zhuzining">
   
@@ -95,14 +94,14 @@ ga('send', 'pageview');
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-2018_05_no_free_lunch" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-2022_11_fine_tuning_with_probing" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/05/01/2018_05_no_free_lunch/" class="article-date">
-  <time datetime="2018-05-02T04:34:00.000Z" itemprop="datePublished">2018-05-01</time>
+    <a href="/2022/11/12/2022_11_fine_tuning_with_probing/" class="article-date">
+  <time datetime="2022-11-13T03:05:00.000Z" itemprop="datePublished">2022-11-12</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Machine-Learning/">Machine Learning</a>
+    <a class="article-category-link" href="/categories/Academia/">Academia</a>
   </div>
 
   </div>
@@ -113,7 +112,7 @@ ga('send', 'pageview');
         
   
     <h1 class="article-title" itemprop="name">
-      Thoughts about the Free Lunch
+      Predicting Fine-tuning Performance with Probing
     </h1>
   
 
@@ -121,32 +120,31 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>This post starts when I was reviewing the no free lunch theorem in machine learning. A machine learning model being able to predict with high accuracy from unseen data should have knowledge about the data. Then what is knowledge? I started to have the feeling that knowledge should be defined in a broader sense than what it is done in (intro) epistemology textbooks. Namely, it should be closely related to the creation of intelligent systems, which might be more important than defining what knowledge is in human languages.</p>
-<ul>
-<li>A brief overview about the no free lunch theorem  </li>
-<li>Does learning something indicate having knowledge over it?  </li>
-<li>Gödel’s idea…?</li>
-<li>What should we do then? (If knowledge is nothing, then what does the hard tasks at schools make sense?)</li>
-</ul>
+        <p>Probing results can be useful for model developments.</p>
 <span id="more"></span>
-<h2 id="No-Free-Lunch-Theorem-a-machine-learning-point-of-view"><a href="#No-Free-Lunch-Theorem-a-machine-learning-point-of-view" class="headerlink" title="No Free Lunch Theorem: a machine learning point of view"></a>No Free Lunch Theorem: a machine learning point of view</h2><p>If you don’t impose any restrictions on the training data, then averaged among all possible training data, the performance of all learned models are equal.<br>Intuitively this makes sense — if you have a model well fitted to a dataset <script type="math/tex">\{ x_i, y_i \}</script>, then an arbitrarily created test set <script type="math/tex">\{ x_i, 1-y_i \}</script> will make this model have 0 accuracy. However this is by no means rigorous. A more rigorous formulation<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> states that for every learner, there exists a task on which it fails, even though that task can be successfully learned by another learner.<br>Takeaways from this theorem?  </p>
-<ul>
-<li>Any learning algorithm is context-dependent. A model trained on a dataset can <strong>not</strong> be ported to test on another dataset without some guarantee (e.g: the two datasets come from the same source, etc.) However, if the algorithm has good generalizability to the other dataset, then something common between these two datasets are really learned by this model.  </li>
-<li>Do not be too frustrated if a model does not work well on a dataset. It might be working well on another. On the other hand, it is very important to figure out on which datasets do your model performs well.  </li>
-</ul>
-<h2 id="Epistemology-point-of-view"><a href="#Epistemology-point-of-view" class="headerlink" title="Epistemology point of view"></a>Epistemology point of view</h2><p>This sections notes down some attempts to describe knowledge from a nature language point of view. A lot of information come from the PHL232 recommended reading <sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>. As far as I can tell, people try to give a definition of knowledge using human languages.<br>A classical analysis of knowledge defines it as justified true belief. Later people hold either belief-first (internalism) or knowledge-first (externalism) point of views. There are also some arguments saying “you have to believe a true information in the right way”. Either way, knowledge is closely related to the human’s subjective perceptual systems.<br>I don’t have an exact definition for knowledge, but feel that the definition should consider non-human objects and creatures as well. If a robot, for example, can clean the room, then it knows how to clean the room. This could also be a form of “knowledge”. More specifically, the ability to create intelligent systems should be able to indicate the mastery of (at least some of) the definition of knowledge. In this way, machine learning researchers are actually tackling one of the most interesting problems I have ever encountered: addressing what knowledge is, using pragmatic and generative approaches.</p>
-<h2 id="Godel’s-idea…"><a href="#Godel’s-idea…" class="headerlink" title="Gödel’s idea…?"></a>Gödel’s idea…?</h2><p>A further thought about why pragmatic and generative approach (instead of the literal approach taken in philosophers) works might be related to Gödel’s idea. More specifically, my bold extension to it.<br>Gödel’s incompleteness theorems proposed that no formal system of axioms are able to demonstrate its own consistency. (A tricky part comes in here: this theorem is not provable, and it actually asserts non-provability, so it is actually true. It is like saying “S1: this sentence is false. S2: you can’t prove, true or false, S1.” S2 evaluates to true.) In other words, there will be some axioms of a system that needs external knowledge to prove (true or false).<br>My bold extension: there are some statements in a knowledge system that is not able to be proved by the knowledge inside it. This might or might not be addressed, as more knowledge are discovered. The definition of knowledge using human language, in my opinion, belongs to one of the things that could not even be well defined using purely literal information: recursively asking “what is” is always (I think) possible — so that there is no point just going down levels by levels to clarify what knowledge is (for me: see below section for my definition of “no point”). As long as we can build intelligent systems, the definition of knowledge using human language is just meaningless (given that human languages, or formal logic systems, are limited in capacity). We might need to resort to the prowess of something we could not understand (<strong>but are able to control</strong>), to address “what knowledge is” in a pragmatic approach.</p>
-<h2 id="Pragmatic-opinions"><a href="#Pragmatic-opinions" class="headerlink" title="Pragmatic opinions"></a>Pragmatic opinions</h2><p>This ultimately comes back to talking about a problem that cannot even be clearly defined. In the above “reasoning”, I could only describe but not define the terms. I think it does not matter whether there is an ultimately discoverable truth (“matter” itself needs to be defined, by the way). What matters, however, is how you respond to that. Realizing your values, while making the world a better place could be a good metric to evaluate whether something matters. If holding a nihilistic point of view makes you go further away from making the world better, it is not good.</p>
-<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style:none; padding-left: 0;"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">1.</span><span style="display: inline-block; vertical-align: top;">Understanding Machine Learning (Shai Shalev-Shwartz and Shai Ben-David)</span><a href="#fnref:1" rev="footnote"> ↩</a></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">2.</span><span style="display: inline-block; vertical-align: top;">Knowledge: a very short introduction (Jennifer Nagel)</span><a href="#fnref:2" rev="footnote"> ↩</a></li></ol></div></div>
+<h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>Large NLP models have recently shown impressive performance in language understanding tasks, typically evaluated by fine-tuning tasks. Alternatively, probing has received increasing attention as being a lightweight method for interpreting the intrinsic mechanisms of large NLP models. In probing, post-hoc classifiers are trained on ``out-of-domain’’ datasets that diagnose specific abilities. While probing the language models has led to insightful findings, they appear disjointed from the development of models. This paper explores the utility of probing deep NLP models to extract a proxy signal widely used in model developments, the fine-tuning performance. We find that it is possible to use the accuracies of only three probing results to predict the fine-tuning performance with errors 40% - 80% smaller than baselines. We further show the possibility of incorporating specialized probing datasets into developing deep NLP models.</p>
+<h2 id="Slides"><a href="#Slides" class="headerlink" title="Slides"></a>Slides</h2><iframe id="iframepdf" style="width: 100%; min-height: 600px;" src="https://res.cloudinary.com/dnijsrvoc/image/upload/v1668309023/Blog/res/202211_predicting_finetuning_performance_with_probing_slides_guxjyp.pdf"></iframe>
+
+<h2 id="Poster"><a href="#Poster" class="headerlink" title="Poster"></a>Poster</h2><iframe id="iframepdf" style="width: 100%; min-height: 600px;" src="https://res.cloudinary.com/dnijsrvoc/image/upload/v1668309021/Blog/res/202211_predicting_finetuning_performance_with_probing_poster_szpkdk.pdf"></iframe>
+
+<h2 id="2-min-video"><a href="#2-min-video" class="headerlink" title="2-min video"></a>2-min video</h2><!--Use "video" and "video_container" classs to allow scaling w/ mobile compatibility-->
+<div class="video_container">
+    <iframe src="https://www.youtube.com/embed/XwRR2TFJVHg" frameborder="0" allow="accerometer; autoplay; clipboard-write; encrypted-media; gyroscope; pucture-in-picture" allowfullscreen class="video"></iframe>
+</div>
+
+<h2 id="Long-video"><a href="#Long-video" class="headerlink" title="Long video"></a>Long video</h2><!--Use "video" and "video_container" classs to allow scaling w/ mobile compatibility-->
+<div class="video_container">
+    <iframe src="https://www.youtube.com/embed/egsfDfKPGXI" frameborder="0" allow="accerometer; autoplay; clipboard-write; encrypted-media; gyroscope; pucture-in-picture" allowfullscreen class="video"></iframe>
+</div>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://ziningzhu.me/2018/05/01/2018_05_no_free_lunch/" data-id="ckljodjx3001q3k1yfcbe6cp7" class="article-share-link">Share</a>
+      <a data-url="https://ziningzhu.me/2022/11/12/2022_11_fine_tuning_with_probing/" data-id="claes65zf0000evrqdhubg10t" class="article-share-link">Share</a>
       
-        <a href="https://ziningzhu.me/2018/05/01/2018_05_no_free_lunch/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="https://ziningzhu.me/2022/11/12/2022_11_fine_tuning_with_probing/#disqus_thread" class="article-comment-link">Comments</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learning/" rel="tag">learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/philosophy/" rel="tag">philosophy</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ExplainableAI/" rel="tag">ExplainableAI</a></li></ul>
 
     </footer>
   </div>
@@ -154,19 +152,10 @@ ga('send', 'pageview');
     
 <nav id="article-nav">
   
-    <a href="/2018/05/21/2018_05_style_ten_lessons/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Clarity And Grace in Writing
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/03/24/2018_03_svm/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2022/07/31/2022_07_ood_probe/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Support Vector Machines Review</div>
+      <div class="article-nav-title">OOD-Probe: A Neural Interpretation of Out-of-Domain Generalization</div>
     </a>
   
 </nav>
@@ -192,6 +181,10 @@ ga('send', 'pageview');
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/11/12/2022_11_fine_tuning_with_probing/">&bull; Predicting Fine-tuning Performance with Probing</a>
+          </li>
         
           <li>
             <a href="/2022/07/31/2022_07_ood_probe/">&bull; OOD-Probe: A Neural Interpretation of Out-of-Domain Generalization</a>
@@ -226,7 +219,7 @@ ga('send', 'pageview');
           </li>
         
           <li>
-            <a href="/2021/07/09/2021_07_layerwise_anomaly/">&bull; How is BERT surprised? Layerwise detection of linguistic anomalies</a>
+            <a href="/2021/07/10/2021_07_layerwise_anomaly/">&bull; How is BERT surprised? Layerwise detection of linguistic anomalies</a>
           </li>
         
           <li>
@@ -247,10 +240,6 @@ ga('send', 'pageview');
         
           <li>
             <a href="/2020/09/21/2020_09_infoprobe/">&bull; An information theoretic view on selecting linguistic probes</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/10/2020_07_acl2020/">&bull; Trends in ACL 2020</a>
           </li>
         
       </ul>
@@ -304,7 +293,7 @@ ga('send', 'pageview');
 <script>
   var disqus_shortname = 'ziningzhu-me';
   
-  var disqus_url = 'https://ziningzhu.me/2018/05/01/2018_05_no_free_lunch/';
+  var disqus_url = 'https://ziningzhu.me/2022/11/12/2022_11_fine_tuning_with_probing/';
   
   (function(){
     var dsq = document.createElement('script');
