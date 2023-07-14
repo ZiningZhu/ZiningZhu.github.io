@@ -12,19 +12,19 @@
 <meta property="og:site_name" content="Zining&#39;s Blog">
 <meta property="og:description" content="We are running out of data — the computational power is growing faster than the data, especially high-quality data. It’s time to give more attention to studying the data. This paper presents a framewo">
 <meta property="og:locale">
-<meta property="og:image" content="https://ziningzhu.me/2023/07/14/img/2023_07_state_vector/E_X.png">
-<meta property="og:image" content="https://ziningzhu.me/2023/07/14/img/2023_07_state_vector/E_X_and_E_Y.png">
-<meta property="og:image" content="https://ziningzhu.me/2023/07/14/img/2023_07_state_vector/E_X_Y_no_interaction.png">
-<meta property="og:image" content="https://ziningzhu.me/2023/07/14/img/2023_07_state_vector/state_vector_diagram.png">
-<meta property="og:image" content="https://ziningzhu.me/2023/07/14/img/2023_07_state_vector/individual_effect_example.png">
-<meta property="og:image" content="https://ziningzhu.me/2023/07/14/img/2023_07_state_vector/interaction_effect_example.png">
+<meta property="og:image" content="https://ziningzhu.me/img/2023_07_state_vector/E_X.png">
+<meta property="og:image" content="https://ziningzhu.me/img/2023_07_state_vector/E_X_and_E_Y.png">
+<meta property="og:image" content="https://ziningzhu.me/img/2023_07_state_vector/E_X_Y_no_interaction.png">
+<meta property="og:image" content="https://ziningzhu.me/img/2023_07_state_vector/state_vector_diagram.png">
+<meta property="og:image" content="https://ziningzhu.me/img/2023_07_state_vector/individual_effect_example.png">
+<meta property="og:image" content="https://ziningzhu.me/img/2023_07_state_vector/interaction_effect_example.png">
 <meta property="article:published_time" content="2023-07-14T14:43:00.000Z">
-<meta property="article:modified_time" content="2023-07-14T17:28:00.252Z">
+<meta property="article:modified_time" content="2023-07-14T17:37:03.764Z">
 <meta property="article:author" content="Zining Zhu">
 <meta property="article:tag" content="ExplainableAI">
 <meta property="article:tag" content="Probing">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://ziningzhu.me/2023/07/14/img/2023_07_state_vector/E_X.png">
+<meta name="twitter:image" content="https://ziningzhu.me/img/2023_07_state_vector/E_X.png">
 <meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;zhuzining">
   
   
@@ -139,21 +139,21 @@ ga('send', 'pageview');
 <p>How to know if the abilities of Bob have changed, and if yes, how much? We can apply two standardized exams — one before the semester, and the other one after. <strong>The changes in the exam scores describe the changes in the abilities along each of the dimensions</strong>.</p>
 <p>Coming back to the language model training problem. The university semester is an analogy of the training procedure. Bob is an analogy of the language model. The exam scores are analogies of a technique that we have been working on for several years: <strong>probing</strong>.</p>
 <h2 id="A-framework-to-describe-the-dataset-effects"><a href="#A-framework-to-describe-the-dataset-effects" class="headerlink" title="A framework to describe the dataset effects"></a>A framework to describe the dataset effects</h2><p>Let’s first idealize the probing tests — we assume each score perfectly represents the ability of the model at the time of exam. The collection of exam scores constitute of a vector that describe the state of the model. This is the <strong>state-vector</strong>.</p>
-<p>We run the standardized exams (“probing”) on the model twice — once before training (“semester”), and the other time after. If the semester contains only one dataset (“course”) $X$, then the vector difference of the two state-vector describes the effect of this dataset. We call it the <strong>individual effect</strong> $E(X)$.</p>
-<p><img src="../img/2023_07_state_vector/E_X.png" alt="drawing" style="max-width: 300;"></p>
-<p>The individual effect is a vector pointing from the initial state $S(I)$ to the ending state $S([X,I])$. </p>
-<p>Similarly, imagine there is another dataset $Y$. Training on the dataset $Y$ can bring the model from $S(I)$ to state $S([Y,I])$.</p>
-<p><img src="../img/2023_07_state_vector/E_X_and_E_Y.png" alt="drawing"  style="max-width: 300;"></p>
-<p>Putting $X$ and $Y$ together. If $X$ and $Y$ has no interaction at all, then the change in the model ability should be the <em>vector sum</em> of the two individual effects.</p>
-<p><img src="../img/2023_07_state_vector/E_X_Y_no_interaction.png" alt="drawing"  style="max-width: 500;"></p>
-<p>However, in reality, if we train the model on $X$ and $Y$ combined, the resulting state usually differs from the location marked $S(I)+E(X)+E(Y)$ — the model instead goes to $S([X,Y,I])$.</p>
-<p><img src="../img/2023_07_state_vector/state_vector_diagram.png" alt="drawing"  style="max-width: 500;"></p>
+<p>We run the standardized exams (“probing”) on the model twice — once before training (“semester”), and the other time after. If the semester contains only one dataset (“course”) <script type="math/tex">X</script>, then the vector difference of the two state-vector describes the effect of this dataset. We call it the <strong>individual effect</strong> <script type="math/tex">E(X)</script>.</p>
+<p><img src="/img/2023_07_state_vector/E_X.png"></p>
+<p>The individual effect is a vector pointing from the initial state <script type="math/tex">S(I)</script> to the ending state <script type="math/tex">S([X,I])</script>. </p>
+<p>Similarly, imagine there is another dataset <script type="math/tex">Y</script>. Training on the dataset <script type="math/tex">Y</script> can bring the model from <script type="math/tex">S(I)</script> to state <script type="math/tex">S([Y,I])</script>.</p>
+<p><img src="/img/2023_07_state_vector/E_X_and_E_Y.png"></p>
+<p>Putting <script type="math/tex">X</script> and <script type="math/tex">Y</script> together. If <script type="math/tex">X</script> and <script type="math/tex">Y</script> has no interaction at all, then the change in the model ability should be the <em>vector sum</em> of the two individual effects.</p>
+<p><img src="/img/2023_07_state_vector/E_X_Y_no_interaction.png"></p>
+<p>However, in reality, if we train the model on <script type="math/tex">X</script> and <script type="math/tex">Y</script> combined, the resulting state usually differs from the location marked <script type="math/tex">S(I)+E(X)+E(Y)</script> — the model instead goes to <script type="math/tex">S([X,Y,I])</script>.</p>
+<p><img src="/img/2023_07_state_vector/state_vector_diagram.png"></p>
 <p>The vector difference between where the model should go and where the model actually ends up at is the <strong>interaction effect</strong>.</p>
-<p>In the paper, we defined the individual effects and the interaction effects with math formulations. Our formulation supports statistical testing — you can compute a $p$-value. When it is smaller than 0.05, the dataset effect is significant.</p>
+<p>In the paper, we defined the individual effects and the interaction effects with math formulations. Our formulation supports statistical testing — you can compute a <script type="math/tex">p</script>-value. When it is smaller than 0.05, the dataset effect is significant.</p>
 <h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><p>In experiments, the state comes from probing. Currently, the probing techniques are not 100% valid — I discussed the validity from an information-theoretical view in <a target="_blank" rel="noopener" href="https://aclanthology.org/2020.emnlp-main.744/">EMNLP 2020</a>. The probing techniques are not 100% reliable — I discussed how to make them more reliable in <a target="_blank" rel="noopener" href="https://aclanthology.org/2022.findings-acl.326/">ACL Findings 2022</a>. We probe the models multiple times using different random seeds, so <strong>the measured state is a region</strong>. </p>
 <p>Empirically, we take the center of the region to estimate the dataset effects.</p>
-<p>In the figure below, the arrow is the individual effect.<br><img src="../img/2023_07_state_vector/individual_effect_example.png" alt="drawing"  style="max-width: 500;"></p>
-<p>In the figure below, the purple arrow indicates the interaction effects.<br><img src="../img/2023_07_state_vector/interaction_effect_example.png" alt="drawing"  style="max-width: 500;"></p>
+<p>In the figure below, the arrow is the individual effect.<br><img src="/img/2023_07_state_vector/individual_effect_example.png"></p>
+<p>In the figure below, the purple arrow indicates the interaction effects.<br><img src="/img/2023_07_state_vector/interaction_effect_example.png"></p>
 <h2 id="Some-observed-trends-in-dataset-effects"><a href="#Some-observed-trends-in-dataset-effects" class="headerlink" title="Some observed trends in dataset effects"></a>Some observed trends in dataset effects</h2><p>We observed some really interesting trends in training the models.  </p>
 <p>Individual effects:  </p>
 <ul>
@@ -174,7 +174,7 @@ ga('send', 'pageview');
 </ul>
 <h2 id="Poster"><a href="#Poster" class="headerlink" title="Poster"></a>Poster</h2><iframe id="iframepdf" style="width: 100%; min-height: 600px;" src="https://res.cloudinary.com/dnijsrvoc/image/upload/v1689346275/Blog/res/202306_state_vector_poster_zgxdja.pdf"></iframe>
 
-<h2 id="5-min-video"><a href="#5-min-video" class="headerlink" title="5-min video"></a>5-min video</h2><!--Use "video" and "video_container" classs to allow scaling w/ mobile compatibility-->
+<h2 id="Esmat’s-5-min-video-at-SRW"><a href="#Esmat’s-5-min-video-at-SRW" class="headerlink" title="Esmat’s 5-min video at SRW"></a>Esmat’s 5-min video at SRW</h2><!--Use "video" and "video_container" classs to allow scaling w/ mobile compatibility-->
 <div class="video_container">
     <iframe src="https://www.youtube.com/embed/97yfDU3ZEz4" frameborder="0" allow="accerometer; autoplay; clipboard-write; encrypted-media; gyroscope; pucture-in-picture" allowfullscreen class="video"></iframe>
 </div>
@@ -365,6 +365,21 @@ ga('send', 'pageview');
 <script src="/js/script.js"></script>
 
 
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
