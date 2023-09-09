@@ -12,19 +12,19 @@
 <meta property="og:site_name" content="Zining&#39;s Blog">
 <meta property="og:description" content="We are running out of data — the computational power is growing faster than the data, especially high-quality data. It’s time to give more attention to studying the data. This paper presents a framewo">
 <meta property="og:locale">
-<meta property="og:image" content="https://ziningzhu.github.io/img/2023_07_state_vector/E_X.png">
-<meta property="og:image" content="https://ziningzhu.github.io/img/2023_07_state_vector/E_X_and_E_Y.png">
-<meta property="og:image" content="https://ziningzhu.github.io/img/2023_07_state_vector/E_X_Y_no_interaction.png">
-<meta property="og:image" content="https://ziningzhu.github.io/img/2023_07_state_vector/state_vector_diagram.png">
-<meta property="og:image" content="https://ziningzhu.github.io/img/2023_07_state_vector/individual_effect_example.png">
-<meta property="og:image" content="https://ziningzhu.github.io/img/2023_07_state_vector/interaction_effect_example.png">
+<meta property="og:image" content="https://ziningzhu.github.io/Blog/img/2023_07_state_vector/E_X.png">
+<meta property="og:image" content="https://ziningzhu.github.io/Blog/img/2023_07_state_vector/E_X_and_E_Y.png">
+<meta property="og:image" content="https://ziningzhu.github.io/Blog/img/2023_07_state_vector/E_X_Y_no_interaction.png">
+<meta property="og:image" content="https://ziningzhu.github.io/Blog/img/2023_07_state_vector/state_vector_diagram.png">
+<meta property="og:image" content="https://ziningzhu.github.io/Blog/img/2023_07_state_vector/individual_effect_example.png">
+<meta property="og:image" content="https://ziningzhu.github.io/Blog/img/2023_07_state_vector/interaction_effect_example.png">
 <meta property="article:published_time" content="2023-07-14T14:43:00.000Z">
-<meta property="article:modified_time" content="2023-09-02T15:05:29.208Z">
+<meta property="article:modified_time" content="2023-09-09T12:58:12.062Z">
 <meta property="article:author" content="Zining Zhu">
 <meta property="article:tag" content="ExplainableAI">
 <meta property="article:tag" content="Probing">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://ziningzhu.github.io/img/2023_07_state_vector/E_X.png">
+<meta name="twitter:image" content="https://ziningzhu.github.io/Blog/img/2023_07_state_vector/E_X.png">
 <meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;zhuzining">
   
   
@@ -140,20 +140,20 @@ ga('send', 'pageview');
 <p>Coming back to the language model training problem. The university semester is an analogy of the training procedure. Bob is an analogy of the language model. The exam scores are analogies of a technique that we have been working on for several years: <strong>probing</strong>.</p>
 <h2 id="A-framework-to-describe-the-dataset-effects"><a href="#A-framework-to-describe-the-dataset-effects" class="headerlink" title="A framework to describe the dataset effects"></a>A framework to describe the dataset effects</h2><p>Let’s first idealize the probing tests — we assume each score perfectly represents the ability of the model at the time of exam. The collection of exam scores constitute of a vector that describe the state of the model. This is the <strong>state-vector</strong>.</p>
 <p>We run the standardized exams (“probing”) on the model twice — once before training (“semester”), and the other time after. If the semester contains only one dataset (“course”) <script type="math/tex">X</script>, then the vector difference of the two state-vector describes the effect of this dataset. We call it the <strong>individual effect</strong> <script type="math/tex">E(X)</script>.</p>
-<p><img src="/img/2023_07_state_vector/E_X.png"></p>
+<p><img src="/Blog/img/2023_07_state_vector/E_X.png"></p>
 <p>The individual effect is a vector pointing from the initial state <script type="math/tex">S(I)</script> to the ending state <script type="math/tex">S([X,I])</script>. </p>
 <p>Similarly, imagine there is another dataset <script type="math/tex">Y</script>. Training on the dataset <script type="math/tex">Y</script> can bring the model from <script type="math/tex">S(I)</script> to state <script type="math/tex">S([Y,I])</script>.</p>
-<p><img src="/img/2023_07_state_vector/E_X_and_E_Y.png"></p>
+<p><img src="/Blog/img/2023_07_state_vector/E_X_and_E_Y.png"></p>
 <p>Putting <script type="math/tex">X</script> and <script type="math/tex">Y</script> together. If <script type="math/tex">X</script> and <script type="math/tex">Y</script> has no interaction at all, then the change in the model ability should be the <em>vector sum</em> of the two individual effects.</p>
-<p><img src="/img/2023_07_state_vector/E_X_Y_no_interaction.png"></p>
+<p><img src="/Blog/img/2023_07_state_vector/E_X_Y_no_interaction.png"></p>
 <p>However, in reality, if we train the model on <script type="math/tex">X</script> and <script type="math/tex">Y</script> combined, the resulting state usually differs from the location marked <script type="math/tex">S(I)+E(X)+E(Y)</script> — the model instead goes to <script type="math/tex">S([X,Y,I])</script>.</p>
-<p><img src="/img/2023_07_state_vector/state_vector_diagram.png"></p>
+<p><img src="/Blog/img/2023_07_state_vector/state_vector_diagram.png"></p>
 <p>The vector difference between where the model should go and where the model actually ends up at is the <strong>interaction effect</strong>.</p>
 <p>In the paper, we defined the individual effects and the interaction effects with math formulations. Our formulation supports statistical testing — you can compute a <script type="math/tex">p</script>-value. When it is smaller than 0.05, the dataset effect is significant.</p>
 <h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><p>In experiments, the state comes from probing. Currently, the probing techniques are not 100% valid — I discussed the validity from an information-theoretical view in <a target="_blank" rel="noopener" href="https://aclanthology.org/2020.emnlp-main.744/">EMNLP 2020</a>. The probing techniques are not 100% reliable — I discussed how to make them more reliable in <a target="_blank" rel="noopener" href="https://aclanthology.org/2022.findings-acl.326/">ACL Findings 2022</a>. We probe the models multiple times using different random seeds, so <strong>the measured state is a region</strong>. </p>
 <p>Empirically, we take the center of the region to estimate the dataset effects.</p>
-<p>In the figure below, the arrow is the individual effect.<br><img src="/img/2023_07_state_vector/individual_effect_example.png"></p>
-<p>In the figure below, the purple arrow indicates the interaction effects.<br><img src="/img/2023_07_state_vector/interaction_effect_example.png"></p>
+<p>In the figure below, the arrow is the individual effect.<br><img src="/Blog/img/2023_07_state_vector/individual_effect_example.png"></p>
+<p>In the figure below, the purple arrow indicates the interaction effects.<br><img src="/Blog/img/2023_07_state_vector/interaction_effect_example.png"></p>
 <h2 id="Some-observed-trends-in-dataset-effects"><a href="#Some-observed-trends-in-dataset-effects" class="headerlink" title="Some observed trends in dataset effects"></a>Some observed trends in dataset effects</h2><p>We observed some really interesting trends in training the models.  </p>
 <p>Individual effects:  </p>
 <ul>
@@ -295,7 +295,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/Blog/tags/ExplainableAI/" style="font-size: 18.75px;">ExplainableAI</a> <a href="/Blog/tags/GAN/" style="font-size: 10px;">GAN</a> <a href="/Blog/tags/Information/" style="font-size: 10px;">Information</a> <a href="/Blog/tags/NLP/" style="font-size: 20px;">NLP</a> <a href="/Blog/tags/OOD/" style="font-size: 11.25px;">OOD</a> <a href="/Blog/tags/PGM/" style="font-size: 10px;">PGM</a> <a href="/Blog/tags/Probing/" style="font-size: 10px;">Probing</a> <a href="/Blog/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/Blog/tags/Society/" style="font-size: 10px;">Society</a> <a href="/Blog/tags/Speech/" style="font-size: 10px;">Speech</a> <a href="/Blog/tags/VAE/" style="font-size: 10px;">VAE</a> <a href="/Blog/tags/algorithms/" style="font-size: 11.25px;">algorithms</a> <a href="/Blog/tags/android/" style="font-size: 10px;">android</a> <a href="/Blog/tags/bash/" style="font-size: 10px;">bash</a> <a href="/Blog/tags/book-review/" style="font-size: 16.25px;">book-review</a> <a href="/Blog/tags/conferences/" style="font-size: 15px;">conferences</a> <a href="/Blog/tags/database/" style="font-size: 10px;">database</a> <a href="/Blog/tags/drone/" style="font-size: 10px;">drone</a> <a href="/Blog/tags/java/" style="font-size: 11.25px;">java</a> <a href="/Blog/tags/js/" style="font-size: 10px;">js</a> <a href="/Blog/tags/learning/" style="font-size: 11.25px;">learning</a> <a href="/Blog/tags/linguistics/" style="font-size: 12.5px;">linguistics</a> <a href="/Blog/tags/ml-basics/" style="font-size: 17.5px;">ml-basics</a> <a href="/Blog/tags/os/" style="font-size: 10px;">os</a> <a href="/Blog/tags/philosophy/" style="font-size: 13.75px;">philosophy</a> <a href="/Blog/tags/pytorch/" style="font-size: 11.25px;">pytorch</a> <a href="/Blog/tags/robotics/" style="font-size: 10px;">robotics</a> <a href="/Blog/tags/teamwork/" style="font-size: 10px;">teamwork</a> <a href="/Blog/tags/web/" style="font-size: 13.75px;">web</a>
+      <a href="/Blog/tags/ExplainableAI/" style="font-size: 18.75px;">ExplainableAI</a> <a href="/Blog/tags/GAN/" style="font-size: 10px;">GAN</a> <a href="/Blog/tags/Information/" style="font-size: 10px;">Information</a> <a href="/Blog/tags/NLP/" style="font-size: 20px;">NLP</a> <a href="/Blog/tags/OOD/" style="font-size: 11.25px;">OOD</a> <a href="/Blog/tags/PGM/" style="font-size: 10px;">PGM</a> <a href="/Blog/tags/Probing/" style="font-size: 10px;">Probing</a> <a href="/Blog/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/Blog/tags/Society/" style="font-size: 10px;">Society</a> <a href="/Blog/tags/Speech/" style="font-size: 10px;">Speech</a> <a href="/Blog/tags/VAE/" style="font-size: 10px;">VAE</a> <a href="/Blog/tags/algorithms/" style="font-size: 11.25px;">algorithms</a> <a href="/Blog/tags/android/" style="font-size: 10px;">android</a> <a href="/Blog/tags/bash/" style="font-size: 10px;">bash</a> <a href="/Blog/tags/book-review/" style="font-size: 16.25px;">book-review</a> <a href="/Blog/tags/conferences/" style="font-size: 15px;">conferences</a> <a href="/Blog/tags/database/" style="font-size: 10px;">database</a> <a href="/Blog/tags/drone/" style="font-size: 10px;">drone</a> <a href="/Blog/tags/java/" style="font-size: 11.25px;">java</a> <a href="/Blog/tags/js/" style="font-size: 10px;">js</a> <a href="/Blog/tags/learning/" style="font-size: 11.25px;">learning</a> <a href="/Blog/tags/linguistics/" style="font-size: 12.5px;">linguistics</a> <a href="/Blog/tags/ml-basics/" style="font-size: 17.5px;">ml-basics</a> <a href="/Blog/tags/os/" style="font-size: 10px;">os</a> <a href="/Blog/tags/philosophy/" style="font-size: 13.75px;">philosophy</a> <a href="/Blog/tags/pytorch/" style="font-size: 11.25px;">pytorch</a> <a href="/Blog/tags/robotics/" style="font-size: 10px;">robotics</a> <a href="/Blog/tags/web/" style="font-size: 13.75px;">web</a>
     </div>
   </div>
 
