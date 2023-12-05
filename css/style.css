@@ -313,7 +313,7 @@ body {
   font-weight: bold;
 }
 #header {
-  height: 50px;
+  height: 300px;
   position: relative;
   border-bottom: 1px solid #ddd;
 }
@@ -390,8 +390,6 @@ body {
 #main-nav {
   float: left;
   margin-left: -15px;
-  position: relative;
-  z-index: 99;
 }
 .nav-icon,
 .main-nav-link {
