@@ -1,0 +1,302 @@
+@article{zhu_explanation_2024,
+	bibid = {T1},
+	title = {{Explanation in the Era of Large Language Models}},
+	author = {Zhu, Zining and Chen, Hanjie and Ye, Xi and Tan, Chenhao and Marasović, Ana and Wiegreffe, Sarah and Lyu, Veronica Qing},
+	year = {2024},
+	journal = {NAACL Tutorial Abstracts},
+	abstract = {Explanation has long been a part of communications, where humans use language to elucidate each other and transmit information about the mechanisms of events. There have been numerous works that study the structures of the explanations and their utility to humans. At the same time, explanation relates to a collection of research directions in natural language processing (and more broadly, computer vision and machine learning) where researchers develop computational approaches to explain the (usually deep neural network) models. Explanation has received rising attention. In recent months, the advance of large language models (LLMs) provides unprecedented opportunities to leverage their reasoning abilities, both as tools to produce explanations and as the subjects of explanation analysis. On the other hand, the sheer sizes and the opaque nature of LLMs introduce challenges to the explanation methods. In this tutorial, we intend to review these opportunities and challenges of explanations in the era of LLMs, connect some researches that were previously studied by different research groups, and hopefully sparkle the thoughts of new research directions.},
+	url = {https://explanation-llm.github.io},
+	keywords = {explanation}
+}
+
+@article{zhu_information_2023,
+	bibid = {I6},
+	title = {{Measuring Information in Text Explanations}},
+	author = {Zhu, Zining and Rudzicz, Frank},
+	year = {2023},
+	journal = {arXiv:2310.04557},
+	abstract = {Text-based explanation is a particularly promising approach in explainable AI, but the evaluation of text explanations is method-dependent. We argue that placing the explanations on an information-theoretic framework could unify the evaluations of two popular text explanation methods: rationale and natural language explanations (NLE). This framework considers the post-hoc text pipeline as a series of communication channels, which we refer to as ``explanation channels''. We quantify the information flow through these channels, thereby facilitating the assessment of explanation characteristics. We set up tools for quantifying two information scores: relevance and informativeness. We illustrate what our proposed information scores measure by comparing them against some traditional evaluation metrics. Our information-theoretic scores reveal some unique observations about the underlying mechanisms of two representative text explanations. For example, the NLEs trade-off slightly between transmitting the input-related information and the target-related information, whereas the rationales do not exhibit such a trade-off mechanism. Our work contributes to the ongoing efforts in establishing rigorous and standardized evaluation criteria in the rapidly evolving field of explainable AI.},
+	url = {https://arxiv.org/abs/2310.04557},
+	keywords = {explanation, information}
+}
+
+@article{sahak_state_2023,
+	bibid = {C10},
+	title = {{A State-Vector Framework for Dataset Effects}},
+	author = {Sahak, Esmat and Zhu, Zining and Rudzicz, Frank},
+	year = {2023},
+	journal = {EMNLP},
+	abstract = {The impressive success of recent deep neural network (DNN)-based systems is significantly influenced by the high-quality datasets used in training. However, the effects of the datasets, especially how they interact with each other, remain underexplored. We propose a state-vector framework to enable rigorous studies in this direction. This framework uses idealized probing test results as the bases of a vector space. This framework allows us to quantify the effects of both standalone and interacting datasets. We show that the significant effects of some commonly-used language understanding datasets are characteristic and are concentrated on a few linguistic dimensions. Additionally, we observe some ``spill-over'' effects: the datasets could impact the models along dimensions that may seem unrelated to the intended tasks. Our state-vector framework paves the way for a systematic understanding of the dataset effects, a crucial component in responsible and robust model development.},
+	blog = {../2023/07/14/2023_07_state_vector},
+	url = {https://arxiv.org/abs/2310.10955},
+	keywords = {probing}
+}
+
+@article{zhu_situated_2023,
+	bibid = {W6},
+	title = {{Situated Natural Language Explanations}},
+	author = {Zhu, Zining and Jiang, Haoming and Yang, Jingfeng and Nag, Sreyashi and Zhang, Chao and Jie, Huang and Gao, Yifan and Rudzicz, Frank and Yin, Bing},
+	year = {2023},
+	journal = {ACL Natural Language Reasoning and Structured Explanation Workshop},
+	abstract = {Natural language is among the most accessible tools for explaining decisions to humans, and large pretrained language models (PLMs) have demonstrated impressive abilities to generate coherent natural language explanations (NLE). The existing NLE research perspectives do not take the audience into account. An NLE can have high textual quality, but it might not accommodate audiences' needs and preference. To address this limitation, we propose an alternative perspective, \textit{situated NLE}, including a situated generation framework and a situated evaluation framework. On the generation side, we propose simple prompt engineering methods that adapt the NLEs to situations. In human studies, the annotators preferred the situated NLEs. On the evaluation side, we set up automated evaluation scores in lexical, semantic, and pragmatic categories. The scores can be used to select the most suitable prompts to generate NLEs. Situated NLE provides a perspective to conduct further research on automatic NLE generations.},
+	blog = {../2023/06/26/2023_06_situated_NLE/},
+	url = {https://arxiv.org/abs/2308.14115},
+	keywords = {explanation}
+}
+
+@article{huang_ccgen_2023,
+	bibid = {I5},
+	title = {{CCGen: Explainable Complementary Concept Generation in E-Commerce}},
+	author = {Huang, Jie and Gao, Yifan and Li, Zheng and Yang, Jingfeng and Song, Yangqiu and Zhang, Chao and Zhu, Zining and Jiang, Haoming and Chang, Kevin Chen-Chuan and Yin, Bing},
+	year = {2023},
+	journal = {arXiv:2305.11480},
+	abstract = {We propose and study Complementary Concept Generation (CCGen): given a concept of interest, e.g., "Digital Cameras", generating a list of complementary concepts, e.g., 1) Camera Lenses 2) Batteries 3) Camera Cases 4) Memory Cards 5) Battery Chargers. CCGen is beneficial for various applications like query suggestion and item recommendation, especially in the e-commerce domain. To solve CCGen, we propose to train language models to generate ranked lists of concepts with a two-step training strategy. We also teach the models to generate explanations by incorporating explanations distilled from large teacher models. Extensive experiments and analysis demonstrate that our model can generate high-quality concepts complementary to the input concept while producing explanations to justify the predictions.},
+	url = {https://arxiv.org/abs/2305.11480},
+	keywords = {explanation}
+}
+
+@article{shahtalebi_ood_failure_2022,
+	bibid = {W5},
+	title = {{Out-of-Distribution Failure through the Lens of Labeling Mechanisms: An Information Theoretic Approach}},
+	author = {Shahtalebi, Soroosh and Zhu, Zining and Rudzicz, Frank},
+	year = {2022},
+	journal = {ICML Workshop on Spurious Correlations, Invariance and Stability},
+	abstract = {Machine learning models typically fail in deployment environments where the distribution of data does not perfectly match that of the training domains. This phenomenon is believed to stem from networks' failure to capture the invariant features that generalize to unseen domains. However, we attribute this phenomenon to the limitations that the labeling mechanism employed by humans imposes on the learning algorithm. We conjecture that providing multiple labels for each datapoint where each could describe the existence of particular objects/concepts on the data point, decreases the risk of capturing non-generalizable correlations by the model. We theoretically show that learning over a multi-label regime, where  labels for each data point are present, tightens the expected generalization gap by a factor of 1/sqrt{K} compared to a similar case where only one label for each data point is in hand. Also, we show that learning under this regime is much more sample efficient and requires a fraction of training data to provide competitive results.},
+	blog={../2022/07/30/2022_07_ood_labels/},
+	url={https://openreview.net/pdf?id=wZTa5POugK_},
+	keywords = {generalization, information}
+}
+
+@article{zhu_ood_probe_2022,
+	bibid = {W4},
+	title = {{OOD-Probe: A Neural Interpretation of Out-of-Domain Generalization}},
+	author = {Zhu, Zining and Shahtalebi, Soroosh and Rudzicz, Frank},
+	year = {2022},
+	journal = {{ICML Workshop on Spurious Correlations, Invariance and Stability}},
+	abstract = {The ability to generalize out-of-domain (OOD) is an important goal for deep neural network development, and researchers have proposed many high-performing OOD generalization methods from various foundations. While many OOD algorithms perform well in various scenarios, these systems are evaluated as ``black-boxes''. Instead, we propose a flexible framework that evaluates OOD systems with finer granularity using a probing module that predicts the originating domain from intermediate representations. We find that representations always encode some information about the domain. While the layerwise encoding patterns remain largely stable across different OOD algorithms, they vary across the datasets. For example, the information about rotation (on RotatedMNIST) is the most visible on the lower layers, while the information about style (on VLCS and PACS) is the most visible on the middle layers. In addition, the high probing results correlate to the domain generalization performances, leading to further directions in developing OOD generalization systems.},
+	blog={../2022/07/31/2022_07_ood_probe},
+	url={https://arxiv.org/abs/2208.12352},
+	keywords = {probing, generalization}
+}
+
+@article{zhu_predicting_2022,
+	bibid = {C9},
+    title = {{Predicting fine-tuning performance with probing}},
+    author = {Zhu, Zining and Shahtalebi, Soroosh and Rudzicz, Frank},
+    year = {2022},
+    journal = {{EMNLP}},
+	abstract = {Large NLP models have recently shown impressive performance in language understanding tasks, typically evaluated by fine-tuning tasks. Alternatively, probing has received increasing attention as being a lightweight method for interpreting the intrinsic mechanisms of large NLP models. In probing, post-hoc classifiers are trained on ``out-of-domain'' datasets that diagnose specific abilities. While probing the language models has led to insightful findings, they appear disjointed from the development of models. This paper explores the utility of probing deep NLP models to extract a proxy signal widely used in model developments, the fine-tuning performance. We find that it is possible to use the accuracies of only three probing results to predict the fine-tuning performance with errors 40% - 80% smaller than baselines. We further show the possibility of incorporating specialized probing datasets into developing deep NLP models.},
+	blog={http://ziningzhu.github.io/2022/11/12/2022_11_fine_tuning_with_probing/},
+	url={https://arxiv.org/abs/2210.07352},
+	keywords = {probing, generalization}
+}
+
+@inproceedings{zhu_data_2022,
+	bibid = {C8},
+    title = {{On the data requirements of probing}},
+    author = {Zhu, Zining and Wang, Jixuan and Li, Bai and Rudzicz, Frank},
+    year={2022},
+    booktitle={{Findings of ACL}},
+    publisher={Association for Computational Linguistics},
+	abstract = {As large and powerful neural language models are developed, researchers have been increasingly interested in developing diagnostic tools to probe them. There are many papers with conclusions of the form "observation X is found in model Y", using their own datasets with varying sizes. Larger probing datasets bring more reliability, but are also expensive to collect. There is yet to be a quantitative method for estimating reasonable probing dataset sizes. We tackle this omission in the context of comparing two probing configurations: after we have collected a small dataset from a pilot study, how many additional data samples are sufficient to distinguish two different configurations? We present a novel method to estimate the required number of data samples in such experiments and, across several case studies, we verify that our estimations have sufficient statistical power. Our framework helps to systematically construct probing datasets to diagnose neural NLP models.},
+	blog={../2022/04/23/2022_04_probing_datasets/},
+	url={https://aclanthology.org/2022.findings-acl.326/},
+	keywords = {probing}
+}
+
+@inproceedings{li_cxg_2022,
+	bibid = {C7},
+    title = {{Neural reality of argument structure constructions}},
+    author = {Li, Bai and Zhu, Zining and Thomas, Guillaume and Rudzicz, Frank and Xu, Yang},
+    year={2022},
+    booktitle={{ACL}},
+    publisher={Association for Computational Linguistics},
+	abstract={In lexicalist linguistic theories, argument structure is assumed to be predictable from the meaning of verbs. As a result, the verb is the primary determinant of the meaning of a clause. In contrast, construction grammarians propose that argument structure is encoded in constructions (or form-meaning pairs) that are distinct from verbs. Decades of psycholinguistic research have produced substantial empirical evidence in favor of the construction view. Here we adapt several psycholinguistic studies to probe for the existence of argument structure constructions (ASCs) in Transformer-based language models (LMs). First, using a sentence sorting experiment, we find that sentences sharing the same construction are closer in embedding space than sentences sharing the same verb. Furthermore, LMs increasingly prefer grouping by construction with more input data, mirroring the behaviour of non-native language learners. Second, in a ``Jabberwocky'' priming-based experiment, we find that LMs associate ASCs with meaning, even in semantically nonsensical sentences. Our work  offers the first evidence for ASCs in LMs and highlights the potential to devise novel probing methods grounded in psycholinguistic research.},
+	blog={../2022/04/23/2022_04_cxg_probing/},
+	url={https://aclanthology.org/2022.acl-long.512/},
+	keywords={probing, discourse}
+}
+
+@misc{zhu_quantifying_2021,
+      bibid = {I4},
+      title = {{Quantifying the Task-Specific Information in Text-Based Classifications}}, 
+      author = {Zhu, Zining and Balagopalan, Aparna and Ghassemi, Marzyeh and Rudzicz, Frank},
+      year = {2021},
+      eprint = {2110.08931},
+      archivePrefix = {arXiv},
+	  journal = {arXiv:2110.08931},
+      primaryClass = {cs.CL},
+	  url = "https://arxiv.org/abs/2110.08931",
+	  abstract = {Recently, neural natural language models have attained state-of-the-art performance on a wide variety of tasks, but the high performance can result from superficial, surface-level cues (Bender and Koller, 2020; Niven and Kao, 2020). These surface cues, as the ``shortcuts'' inherent in the datasets, do not contribute to the *task-specific information* (TSI) of the classification tasks. While it is essential to look at the model performance, it is also important to understand the datasets. In this paper, we consider this question: Apart from the information introduced by the shortcut features, how much task-specific information is required to classify a dataset? We formulate this quantity in an information-theoretic framework. While this quantity is hard to compute, we approximate it with a fast and stable method. TSI quantifies the amount of linguistic knowledge modulo a set of predefined shortcuts -- that contributes to classifying a sample from each dataset. This framework allows us to compare across datasets, saying that, apart from a set of ``shortcut features'', classifying each sample in the Multi-NLI task involves around 0.4 nats more TSI than in the Quora Question Pair.},
+	  blog = {../2021/11/07/2021_11_task_specific_information/},
+	  keywords = {generalization, information}
+}
+
+@inproceedings{ramezani_unsupervised_2021,
+	bibid = {C6},
+	title = {An unsupervised framework for tracing textual sources of moral change},
+	author = {Ramezani, Aida and Zhu, Zining and Rudzicz, Frank and Xu, Yang},
+	_author_stars = {0,1},
+	booktitle = {{Findings of EMNLP}},
+	year = {2021},
+	pages = {1215-1228},
+	address = "Punta Cana, Dominican Republic",
+	publisher = "Association for Computational Linguistics",
+	url = "https://aclanthology.org/2021.findings-emnlp.105/",
+	abstract = {Morality plays a critical role in social well-being, but people's moral perception is not stable and changes over time. Recent advances in natural language processing have shown that text is an effective medium for informing moral change, but no attempt has been made to quantify the origins of these changes. We present a novel unsupervised framework for tracing textual sources of moral change toward entities (e.g., <i>Donald Trump</i>) through time. We characterize moral change with probabilistic topical distributions and infer the source text that exerts prominent influence on the moral time course. We evaluate our framework rigorously on a diverse set of data ranging from social media to news articles. We show that our framework not only captures fine-grained human moral judgments, but also identifies coherent source topics of moral change triggered by historical events. We apply our methodology to analyze the news in the COVID-19 pandemic and demonstrate its utility in identifying sources of moral change in high-impact and real-time social events.},
+	blog = {../2021/11/07/2021_11_detect_moral_sentiment_change/},
+	keywords = {society}
+}
+
+@misc{zhu_what_2021,
+	bibid = {I3},
+	title = {What do writing features tell us about {AI} papers?},
+	copyright = {All rights reserved},
+	url = {https://arxiv.org/abs/2107.06310},
+	abstract = {As the numbers of submissions to conferences grow quickly, the task of assessing the quality of academic papers automatically, convincingly, and with high accuracy attracts increasing attention. We argue that studying interpretable dimensions of these submissions could lead to scalable solutions. We extract a collection of writing features, and construct a suite of prediction tasks to assess the usefulness of these features in predicting citation counts and the publication of AI-related papers. Depending on the venues, the writing features can predict the conference vs. workshop appearance with F1 scores up to 60-90, sometimes even outperforming the content-based tf-idf features and RoBERTa. We show that the features describe writing style more than content. To further understand the results, we estimate the causal impact of the most indicative features. Our analysis on writing features provides a perspective to assessing and refining the writing of academic articles at scale.},
+	author = {Zhu, Zining and Li, Bai and Xu, Yang and Rudzicz, Frank},
+	year = {2021},
+	blog = {../2021/07/20/2021_07_writing_features/},
+	journal = {arXiv:2107.06310},
+	keywords = {discourse}
+}
+
+@inproceedings{li_how_2021,
+	bibid = {C5},
+	title = {How is {BERT} surprised? {Layerwise} detection of linguistic anomalies},
+	copyright = {All rights reserved},
+    abstract = {Transformer language models have shown remarkable ability in detecting when a word is anomalous in context, but likelihood scores offer no information about the cause of the anomaly. In this work, we use Gaussian models for density estimation at intermediate layers of three language models (BERT, RoBERTa, and XLNet), and evaluate our method on BLiMP, a grammaticality judgement benchmark. In lower layers, surprisal is highly correlated to low token frequency, but this correlation diminishes in upper layers. Next, we gather datasets of morphosyntactic, semantic, and commonsense anomalies from psycholinguistic studies; we find that the best performing model RoBERTa exhibits surprisal in earlier layers when the anomaly is morphosyntactic than when it is semantic, while commonsense anomalies do not exhibit surprisal at any intermediate layer. These results suggest that language models employ separate mechanisms to detect different types of linguistic anomalies.},
+	booktitle = {{ACL-IJCNLP}},
+	publisher = "Association for Computational Linguistics",
+	url = {https://aclanthology.org/2021.acl-long.325},
+	author = {Li, Bai and Zhu, Zining and Thomas, Guillaume and Xu, Yang and Rudzicz, Frank},
+	year = {2021},
+	blog = {../2021/07/10/2021_07_layerwise_anomaly/},
+	keywords = {probing}
+}
+
+@inproceedings{zhu_information_2020,
+	bibid = {C4},
+	address = {Online},
+	title = {An information theoretic view on selecting linguistic probes},
+	copyright = {All rights reserved},
+	url = {https://www.aclweb.org/anthology/2020.emnlp-main.744},
+	doi = {10.18653/v1/2020.emnlp-main.744},
+	abstract = {There is increasing interest in assessing the linguistic knowledge encoded in neural representations. A popular approach is to attach a diagnostic classifier – or ”probe” – to perform supervised classification from internal representations. However, how to select a good probe is in debate. Hewitt and Liang (2019) showed that a high performance on diagnostic classification itself is insufficient, because it can be attributed to either ”the representation being rich in knowledge”, or ”the probe learning the task”, which Pimentel et al. (2020) challenged. We show this dichotomy is valid information-theoretically. In addition, we find that the ”good probe” criteria proposed by the two papers, *selectivity* (Hewitt and Liang, 2019) and *information gain* (Pimentel et al., 2020), are equivalent – the errors of their approaches are identical (modulo irrelevant terms). Empirically, these two selection criteria lead to results that highly agree with each other.},
+	urldate = {2021-03-30},
+	booktitle = {{EMNLP}},
+	publisher = {Association for Computational Linguistics},
+	author = {Zhu, Zining and Rudzicz, Frank},
+	month = nov,
+	year = {2020},
+	pages = {9251--9262},
+	blog = {../2020/09/21/2020_09_infoprobe/},
+	keywords = {probing, information}
+}
+
+@inproceedings{zhu_examining_2020,
+	bibid = {W3},
+	title = {Examining the rhetorical capacities of neural language models},
+	copyright = {All rights reserved},
+	url = {https://www.aclweb.org/anthology/2020.blackboxnlp-1.3/},
+	booktitle = {{EMNLP} {BlackboxNLP} {Workshop}},
+	publisher = {Association for Computational Linguistics},
+	author = {Zhu, Zining and Pan, Chuer and Abdalla, Mohamed and Rudzicz, Frank},
+	year = {2020},
+	pages = {16--32},
+    abstract = {Recently, neural language models (LMs) have demonstrated impressive abilities in generating high-quality discourse. While many recent papers have analyzed the syntactic aspects encoded in LMs, there has been no analysis to date of the inter-sentential, rhetorical knowledge. In this paper, we propose a method that quantitatively evaluates the rhetorical capacities of neural LMs. We examine the capacities of neural LMs understanding the rhetoric of discourse by evaluating their abilities to encode a set of linguistic features derived from Rhetorical Structure Theory (RST). Our experiments show that BERT-based LMs outperform other Transformer LMs, revealing the richer discourse knowledge in their intermediate layer representations. In addition, GPT-2 and XLNet apparently encode less rhetorical knowledge, and we suggest an explanation drawing from linguistic philosophy. Our method shows an avenue towards quantifying the rhetorical capacities of neural LMs.},
+    blog = {../2020/09/30/2020_09_RSTprobe/},
+	keywords = {probing, discourse}
+}
+
+@misc{zhu_semantic_2020,
+	bibid = {I2},
+	title = {Semantic coordinates analysis reveal language changes in {AI} research},
+	copyright = {All rights reserved},
+	url = {https://arxiv.org/abs/2011.00543},
+	journal = {arXiv:2011.00543},
+	author = {Zhu, Zining and Xu, Yang and Rudzicz, Frank},
+	year = {2020},
+    abstract = {Semantic shifts can reflect changes in beliefs across hundreds of years, but it is less clear whether trends in fast-changing communities across a short time can be detected. We propose semantic coordinates analysis, a method based on semantic shifts, that reveals changes in language within publications of a field (we use AI as example) across a short time span. We use GloVe-style probability ratios to quantify the shifting directions and extents from multiple viewpoints. We show that semantic coordinates analysis can detect shifts echoing changes of research interests (e.g., "deep" shifted further from "rigorous" to "neural"), and developments of research activities (e,g., "collaboration" contains less "competition" than "collaboration"), based on publications spanning as short as 10 years.},
+	keywords = {discourse}
+}
+
+@misc{zhu_natural_2019,
+	bibid = {I1},
+	title = {Natural languages understanding by a compositional alignment of word embeddings},
+	copyright = {All rights reserved},
+	url = {../res/undergraduate_thesis.pdf},
+	journal = {{University of Toronto Engineering Science Undergraduate Thesis}},
+	author = {Zhu, Zining},
+	year = {2019},
+	keywords = {compositionality, natural languages understanding},
+}
+
+@inproceedings{zhu_detecting_2019,
+	bibid = {C3},
+	title = {Detecting cognitive impairments by agreeing on interpretations of linguistic features},
+	copyright = {All rights reserved},
+	url = {https://www.aclweb.org/anthology/N19-1146},
+	doi = {10.18653/v1/N19-1146},
+	booktitle = {{NAACL}},
+	publisher = {Association for Computational Linguistics},
+	author = {Zhu, Zining and Novikova, Jekaterina and Rudzicz, Frank},
+	year = {2019},
+	pages = {1431--1441},
+	abstract = {Linguistic features have shown promising applications for detecting various cognitive impairments. To improve detection accuracies, increasing the amount of data or the number of linguistic features have been two applicable approaches. However, acquiring additional clinical data can be expensive, and hand-crafting features is burdensome. In this paper, we take a third approach, proposing Consensus Networks (CNs), a framework to classify after reaching agreements between modalities. We divide linguistic features into non-overlapping subsets according to their modalities, and let neural networks learn low-dimensional representations that agree with each other. These representations are passed into a classifier network. All neural networks are optimized iteratively. In this paper, we also present two methods that improve the performance of CNs. We then present ablation studies to illustrate the effectiveness of modality division. To understand further what happens in CNs, we visualize the representations during training. Overall, using all of the 413 linguistic features, our models significantly outperform traditional classifiers, which are used by the state-of-the-art papers.},
+	keywords = {ML4H}
+}
+
+@inproceedings{zhu_deconfounding_2018,
+	bibid = {C2},
+	title = {Deconfounding age effects with fair representation learning when assessing dementia},
+	booktitle={IJCAI-PRICAI},
+	copyright = {All rights reserved},
+	url = {https://arxiv.org/abs/1807.07217},
+	author = {Zhu, Zining and Novikova, Jekaterina and Rudzicz, Frank},
+	year = {2019},
+	journal = {{arXiv:1807.07217}},
+    abstract = {One of the most prevalent symptoms among the elderly population, dementia, can be detected by classifiers trained on linguistic features extracted from narrative transcripts. However, these linguistic features are impacted in a similar but different fashion by the normal aging process. Aging is therefore a confounding factor, whose effects have been hard for machine learning classifiers (especially deep neural network based models) to ignore. We show DNN models are capable of estimating ages based on linguistic features. Predicting dementia based on this aging bias could lead to potentially non-generalizable accuracies on clinical datasets, if not properly deconfounded. In this paper, we propose to address this deconfounding problem with fair representation learning. We build neural network classifiers that learn low-dimensional representations reflecting the impacts of dementia yet discarding the effects of age. To evaluate these classifiers, we specify a model-agnostic score Δ(N)eo measuring how classifier results are deconfounded from age. Our best models compromise accuracy by only 2.56\% and 1.54\% on two clinical datasets compared to DNNs, and their Δ(2)eo scores are better than statistical (residulization and inverse probability weight) adjustments.},
+	blog = {../2020/01/24/2020_01_deconfounding_age/},
+	keywords = {ML4H, generalization}
+}
+
+@article{hsu_robustness_2018,
+	bibid = {W2},
+	title = {Robustness against the channel effect in pathological voice detection},
+	copyright = {All rights reserved},
+	url = {https://arxiv.org/abs/1811.10376},
+	journal = {NeurIPS ML4H Workshop},
+	author = {Hsu, Yi-Te and Zhu, Zining and Wang, Chi-Te and Fang, Shih-Hau and Rudzicz, Frank and Tsao, Yu},
+	year = {2018},
+    abstract = {Many people are suffering from voice disorders, which can adversely affect the quality of their lives. In response, some researchers have proposed algorithms for automatic assessment of these disorders, based on voice signals. However, these signals can be sensitive to the recording devices. Indeed, the channel effect is a pervasive problem in machine learning for healthcare. In this study, we propose a detection system for pathological voice, which is robust against the channel effect. This system is based on a bidirectional LSTM network. To increase the performance robustness against channel mismatch, we integrate domain adversarial training (DAT) to eliminate the differences between the devices. When we train on data recorded on a high-quality microphone and evaluate on smartphone data without labels, our robust detection system increases the PR-AUC from 0.8448 to 0.9455 (and 0.9522 with target sample labels). To the best of our knowledge, this is the first study applying unsupervised domain adaptation to pathological voice detection. Notably, our system does not need target device sample labels, which allows for generalization to many new devices.},
+	keywords = {ML4H}
+}
+
+@article{zhu_semi-supervised_2018,
+	bibid = {W1},
+	title = {Semi-supervised classification by reaching consensus among modalities},
+	copyright = {All rights reserved},
+	url = {http://arxiv.org/abs/1805.09366},
+	journal = {NeurIPS IRASL Workshop},
+	author = {Zhu, Zining and Novikova, Jekaterina and Rudzicz, Frank},
+	year = {2018},
+	keywords = {semi-supervised learning},
+	abstract = {Deep learning has demonstrated abilities to learn complex structures, but they can be restricted by available data. Recently, Consensus Networks (CNs) were proposed to alleviate data sparsity by utilizing features from multiple modalities, but they too have been limited by the size of labeled data. In this paper, we extend CN to Transductive Consensus Networks (TCNs), suitable for semi-supervised learning. In TCNs, different modalities of input are compressed into latent representations, which we encourage to become indistinguishable during iterative adversarial training. To understand TCNs two mechanisms, consensus and classification, we put forward its three variants in ablation studies on these mechanisms. To further investigate TCN models, we treat the latent representations as probability distributions and measure their similarities as the negative relative Jensen-Shannon divergences. We show that a consensus state beneficial for classification desires a stable but imperfect similarity between the representations. Overall, TCNs outperform or align with the best benchmark algorithms given 20 to 200 labeled samples on the Bank Marketing and the DementiaBank datasets.}
+}
+
+@inproceedings{li_deep_2017,
+	bibid = {C1},
+	title = {Deep neural networks for improved, impromptu trajectory tracking of quadrotors},
+	copyright = {All rights reserved},
+	isbn = {978-1-5090-4633-1},
+	url = {https://arxiv.org/abs/1610.06283},
+	doi = {10.1109/ICRA.2017.7989607},
+	booktitle = {ICRA},
+	author = {Li, Qiyang and Qian, Jingxing and Zhu, Zining and Bao, Xuchan and Helwa, Mohamed.K. and Schoellig, Angela.P.},
+	year = {2017},
+	note = {ISSN: 10504729},
+	keywords = {drone control, neural network},
+    abstract = {Trajectory tracking control for quadrotors is important for applications ranging from surveying and inspection, to film making. However, designing and tuning classical controllers, such as proportional-integral-derivative (PID) controllers, to achieve high tracking precision can be time-consuming and difficult, due to hidden dynamics and other non-idealities. The Deep Neural Network (DNN), with its superior capability of approximating abstract, nonlinear functions, proposes a novel approach for enhancing trajectory tracking control. This paper presents a DNN-based algorithm as an add-on module that improves the tracking performance of a classical feedback controller. Given a desired trajectory, the DNNs provide a tailored reference input to the controller based on their gained experience. The input aims to achieve a unity map between the desired and the output trajectory. The motivation for this work is an interactive "fly-as-you-draw" application, in which a user draws a trajectory on a mobile device, and a quadrotor instantly flies that trajectory with the DNN-enhanced control system. Experimental results demonstrate that the proposed approach improves the tracking precision for user-drawn trajectories after the DNNs are trained on selected periodic trajectories, suggesting the method's potential in real-world applications. Tracking errors are reduced by around 40-50\% for both training and testing trajectories from users, highlighting the DNNs' capability of generalizing knowledge.},
+	blog = {../2016/09/01/2016_09_dsl-projects-dnn/}
+}
