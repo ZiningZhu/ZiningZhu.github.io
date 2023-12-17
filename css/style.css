@@ -367,6 +367,11 @@ body {
   left: 0;
   margin-top: -25px;
 }
+@media screen and (max-width: 479px) {
+  #header-title {
+    top: 30%;
+  }
+}
 #logo,
 #subtitle {
   text-decoration: none;
