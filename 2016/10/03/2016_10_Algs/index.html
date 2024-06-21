@@ -67,10 +67,6 @@ ga('send', 'pageview');
         
           <a class="main-nav-link" href="/research">Research</a>
         
-          <a class="main-nav-link" href="/publications">Publications</a>
-        
-          <a class="main-nav-link" href="/teaching">Teaching</a>
-        
           <a class="main-nav-link" href="/team">Team</a>
         
       </nav>
@@ -174,19 +170,19 @@ ga('send', 'pageview');
 </li>
 <li><p>Pre-order traversal</p>
 <ul>
-<li>Recursive  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">preOrder</span>(<span class="params">A</span>):</span></span><br><span class="line">    print(A.data)</span><br><span class="line">    preOrder(A.left)</span><br><span class="line">    preOrder(A.right)</span><br></pre></td></tr></table></figure></li>
+<li>Recursive  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">preOrder</span>(<span class="params">A</span>):</span><br><span class="line">    <span class="built_in">print</span>(A.data)</span><br><span class="line">    preOrder(A.left)</span><br><span class="line">    preOrder(A.right)</span><br></pre></td></tr></table></figure></li>
 <li>Iterative<br>Pop and print current, push right, push left. Repeat until Stack is empty.  </li>
 </ul>
 </li>
 <li><p>In-order traversal</p>
 <ul>
-<li>Recursive  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">inOrder</span>(<span class="params">A</span>):</span></span><br><span class="line">    inOrder(A.left)</span><br><span class="line">    print(A.data)</span><br><span class="line">    inOrder(A.right)</span><br></pre></td></tr></table></figure></li>
+<li>Recursive  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">inOrder</span>(<span class="params">A</span>):</span><br><span class="line">    inOrder(A.left)</span><br><span class="line">    <span class="built_in">print</span>(A.data)</span><br><span class="line">    inOrder(A.right)</span><br></pre></td></tr></table></figure></li>
 <li>Iterative<br>(1) Init Stack and set current to root<br>(2) While current is not null, push current and current=current.left<br>(3) If current is Null, then:<br>Current = pop(), print current, current=current.right, then go to (2)<br>(4) If current is Null and stack is empty, finish.  </li>
 </ul>
 </li>
 <li><p>Post-order traversal</p>
 <ul>
-<li>Recursive  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">postOrder</span>(<span class="params">A</span>):</span></span><br><span class="line">    postOrder(A.left)</span><br><span class="line">    postOrder(A.right)</span><br><span class="line">    print(A.data)</span><br></pre></td></tr></table></figure></li>
+<li>Recursive  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">postOrder</span>(<span class="params">A</span>):</span><br><span class="line">    postOrder(A.left)</span><br><span class="line">    postOrder(A.right)</span><br><span class="line">    <span class="built_in">print</span>(A.data)</span><br></pre></td></tr></table></figure></li>
 <li>Iterative<br>(1) Init two stacks, s1 and s2. Push root to s1.<br>(2) While s1 is not empty:<br>Pop n from s1, and push to s2.<br>Push to s1 n.left;<br>Push to s1 n.right;<br>(3) After s1 is empty, pop s2.  </li>
 </ul>
 </li>
@@ -220,7 +216,7 @@ ga('send', 'pageview');
 <li>An AVL tree is an AVL invariant BST.  </li>
 <li>To insert an element to an AVL within O(h):  </li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">insert</span>(<span class="params">D, Dparent, k</span>):</span></span><br><span class="line">    <span class="keyword">if</span> (D == <span class="literal">None</span>):</span><br><span class="line">        Dparent.child = Node(k)</span><br><span class="line">    <span class="keyword">elif</span>(D.data &lt; k):</span><br><span class="line">        insert(D.right, D, k)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        insert(D.left, D, k)</span><br><span class="line">    AVLify(D) <span class="comment"># needs only to handle the imbalance of node D, with BF either -2 or 2. If BF=-2, perform either right rotation or left-right rotation. If BF=2, perform either left rotation or right-left rotation.</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">right_rotation</span>(<span class="params">D</span>):</span></span><br><span class="line">    root = D.left</span><br><span class="line">    tmp = root.right</span><br><span class="line">    root.right = D</span><br><span class="line">    D.left = tmp</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">left_rotation</span>(<span class="params">D</span>):</span></span><br><span class="line">    root = D.right</span><br><span class="line">    tmp = root.left</span><br><span class="line">    root.left = D</span><br><span class="line">    D.right = tmp</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">left_right</span>(<span class="params">D</span>):</span></span><br><span class="line">    left_rotation(D.left)</span><br><span class="line">    right_rotation(D)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">right_left</span>(<span class="params">D</span>):</span></span><br><span class="line">    right_rotation(D.right)</span><br><span class="line">    left_rotation(D)</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">insert</span>(<span class="params">D, Dparent, k</span>):</span><br><span class="line">    <span class="keyword">if</span> (D == <span class="literal">None</span>):</span><br><span class="line">        Dparent.child = Node(k)</span><br><span class="line">    <span class="keyword">elif</span>(D.data &lt; k):</span><br><span class="line">        insert(D.right, D, k)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        insert(D.left, D, k)</span><br><span class="line">    AVLify(D) <span class="comment"># needs only to handle the imbalance of node D, with BF either -2 or 2. If BF=-2, perform either right rotation or left-right rotation. If BF=2, perform either left rotation or right-left rotation.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">right_rotation</span>(<span class="params">D</span>):</span><br><span class="line">    root = D.left</span><br><span class="line">    tmp = root.right</span><br><span class="line">    root.right = D</span><br><span class="line">    D.left = tmp</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">left_rotation</span>(<span class="params">D</span>):</span><br><span class="line">    root = D.right</span><br><span class="line">    tmp = root.left</span><br><span class="line">    root.left = D</span><br><span class="line">    D.right = tmp</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">left_right</span>(<span class="params">D</span>):</span><br><span class="line">    left_rotation(D.left)</span><br><span class="line">    right_rotation(D)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">right_left</span>(<span class="params">D</span>):</span><br><span class="line">    right_rotation(D.right)</span><br><span class="line">    left_rotation(D)</span><br></pre></td></tr></table></figure></li>
 <li>Red-black tree</li>
 <li>Trie</li>
 </ul>
@@ -231,7 +227,7 @@ ga('send', 'pageview');
 </ul>
 </li>
 <li>Depth-first Search (DFS)<ul>
-<li>Recursive<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">DFS</span>(<span class="params">v</span>):</span></span><br><span class="line">    visit(v)</span><br><span class="line">    <span class="keyword">for</span> n <span class="keyword">in</span> v.neighbours:</span><br><span class="line">        <span class="keyword">if</span> (!n.isVisited()):</span><br><span class="line">            DFS(n)</span><br></pre></td></tr></table></figure></li>
+<li>Recursive<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">DFS</span>(<span class="params">v</span>):</span><br><span class="line">    visit(v)</span><br><span class="line">    <span class="keyword">for</span> n <span class="keyword">in</span> v.neighbours:</span><br><span class="line">        <span class="keyword">if</span> (!n.isVisited()):</span><br><span class="line">            DFS(n)</span><br></pre></td></tr></table></figure></li>
 <li>Iterative<br>Initialize a stack. For each visiting node, push all unvisited neighbours to a stack. Pop() from the stack to visit a node.</li>
 </ul>
 </li>
@@ -278,7 +274,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://ziningzhu.github.io/2016/10/03/2016_10_Algs/" data-id="clqa3n8sg000v1urqaib93dz9" class="article-share-link">Share</a>
+      <a data-url="https://ziningzhu.github.io/2016/10/03/2016_10_Algs/" data-id="clxo6qcwx000g3orq1v9efga0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/algorithms/" rel="tag">algorithms</a></li></ul>
@@ -353,10 +349,6 @@ ga('send', 'pageview');
     <a href="/" class="mobile-nav-link">Home</a>
   
     <a href="/research" class="mobile-nav-link">Research</a>
-  
-    <a href="/publications" class="mobile-nav-link">Publications</a>
-  
-    <a href="/teaching" class="mobile-nav-link">Teaching</a>
   
     <a href="/team" class="mobile-nav-link">Team</a>
   
