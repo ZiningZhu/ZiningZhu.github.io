@@ -963,8 +963,8 @@ footer {
 .academic .support .sponsor-row {
   display: flex;
   justify-content: space-between;
-  gap: 22px;
-  flex-wrap: wrap;
+  gap: 18px;
+  flex-wrap: nowrap;
 }
 .academic .support .sponsor-row > span {
   font-size: 16px;
@@ -978,12 +978,12 @@ footer {
 .academic .sponsor-row img {
   display: block;
   width: auto;
-  max-width: 115px;
-  height: 38px;
+  max-width: 128px;
+  height: 44px;
   object-fit: contain;
 }
 .academic .sponsor-row > a:last-child img {
-  max-width: 125px;
+  max-width: 140px;
 }
 @media (max-width: 760px) {
   .academic .pi {
@@ -992,6 +992,7 @@ footer {
   .academic .support .sponsor-row {
     justify-content: center;
     gap: 24px;
+    flex-wrap: wrap;
   }
 }
 
@@ -1189,4 +1190,83 @@ footer {
   .academic .bio-dialog h2 {
     font-size: 23px;
   }
+}
+
+/* Academic readability pass: increase small copy without changing the layout scale. */
+.academic {
+  font-size: 16px;
+}
+.academic header#top nav {
+  font-size: 15px;
+}
+.academic .hero p {
+  font-size: 16px;
+}
+.academic .hero-links,
+.academic .section-head > p,
+.academic .section-head > a,
+.academic .section-head > span {
+  font-size: 14px;
+}
+.academic .pi .chinese,
+.academic .pi p {
+  font-size: 13px !important;
+}
+.academic .pi a,
+.academic .pi-bio summary,
+.academic .bio-trigger {
+  font-size: 13px;
+}
+.academic .research-item .index {
+  font-size: 12px;
+}
+.academic .research-item h3 {
+  font-size: 17px;
+}
+.academic .research-item p,
+.academic .practice-grid p {
+  font-size: 14px;
+}
+.academic .practice-grid h3 {
+  font-size: 17px;
+}
+.academic .news-row {
+  font-size: 15px;
+}
+.academic .news-row time {
+  font-size: 12px;
+}
+.academic .filters button,
+.academic .paper-meta,
+.academic .paper-venue,
+.academic .award,
+.academic .result-count,
+.academic .muted {
+  font-size: 13px;
+}
+.academic .paper-meta span,
+.academic .paper-link {
+  font-size: 11px;
+}
+.academic .paper h3 {
+  font-size: 18px;
+}
+.academic .person h4 {
+  font-size: 15px;
+}
+.academic .person p {
+  font-size: 13px;
+}
+.academic .coadvise {
+  font-size: 12px !important;
+}
+.academic #contact p,
+.academic footer {
+  font-size: 12px;
+}
+.academic .bio-contact {
+  font-size: 14px;
+}
+.academic .bio-copy p {
+  font-size: 15px;
 }
